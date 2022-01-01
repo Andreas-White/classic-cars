@@ -29,11 +29,11 @@ public class Payment {
     private LocalDate 	paymentDate;
 
     @Column(name = "amount")
-    private double amount;
+    private Double amount;
 
     public Payment() {}
 
-    public Payment(String checkNumber, Customer customer, LocalDate paymentDate, double amount) {
+    public Payment(String checkNumber, Customer customer, LocalDate paymentDate, Double amount) {
         this.checkNumber = checkNumber;
         this.customer = customer;
         this.paymentDate = paymentDate;
@@ -64,11 +64,11 @@ public class Payment {
         this.paymentDate = paymentDate;
     }
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

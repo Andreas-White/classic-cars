@@ -5,12 +5,12 @@ import java.util.Objects;
 
 public class OrderDetailsId implements Serializable {
 
-    private int orderNumber;
+    private Integer orderNumber;
     private String productCode;
 
     public OrderDetailsId() {}
 
-    public OrderDetailsId(int orderNumber, String productCode) {
+    public OrderDetailsId(Integer orderNumber, String productCode) {
         this.orderNumber = orderNumber;
         this.productCode = productCode;
     }
@@ -20,7 +20,7 @@ public class OrderDetailsId implements Serializable {
         if (this == o) return true;
         if (!(o instanceof OrderDetailsId)) return false;
         OrderDetailsId that = (OrderDetailsId) o;
-        return orderNumber == that.orderNumber && productCode.equals(that.productCode);
+        return orderNumber.equals(that.orderNumber) && productCode.equals(that.productCode);
     }
 
     @Override

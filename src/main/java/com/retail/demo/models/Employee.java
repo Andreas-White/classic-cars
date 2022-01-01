@@ -17,7 +17,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employeenumber")
-    private int employeeNumber;
+    private Integer employeeNumber;
 
     @Column(name = "lastname")
     private String lastName;
@@ -44,7 +44,7 @@ public class Employee {
 
     public Employee() {}
 
-    public Employee(int employeeNumber, String lastName, String firstName,
+    public Employee(Integer employeeNumber, String lastName, String firstName,
                     String email, Office office, String jobTitle) {
         this.employeeNumber = employeeNumber;
         this.lastName = lastName;
@@ -54,11 +54,11 @@ public class Employee {
         this.jobTitle = jobTitle;
     }
 
-    public int getEmployeeNumber() {
+    public Integer getEmployeeNumber() {
         return employeeNumber;
     }
 
-    public void setEmployeeNumber(int employeeNumber) {
+    public void setEmployeeNumber(Integer employeeNumber) {
         this.employeeNumber = employeeNumber;
     }
 

@@ -23,7 +23,7 @@ public class OrderDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ordernumber", insertable = false, updatable = false)
-    private int orderNumber;
+    private Integer orderNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ordernumber")
@@ -38,17 +38,18 @@ public class OrderDetails {
     private Product product;
 
     @Column(name = "quantityordered")
-    private int quantityOrdered;
+    private Integer quantityOrdered;
 
     @Column(name = "priceeach")
-    private double priceEach;
+    private Double priceEach;
 
     @Column(name = "orderlinenumber")
-    private int orderLineNumber;
+    private Integer orderLineNumber;
 
     public OrderDetails() {}
 
-    public OrderDetails(String productCode, int orderNumber, int quantityOrdered, double priceEach, int orderLineNumber) {
+    public OrderDetails(String productCode, Integer orderNumber, Integer quantityOrdered, Double priceEach,
+                        Integer orderLineNumber) {
         this.productCode = productCode;
         this.orderNumber = orderNumber;
         this.quantityOrdered = quantityOrdered;
@@ -64,11 +65,11 @@ public class OrderDetails {
         this.productCode = productCode;
     }
 
-    public int getOrderNumber() {
+    public Integer getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(int orderNumber) {
+    public void setOrderNumber(Integer orderNumber) {
         this.orderNumber = orderNumber;
     }
 
@@ -88,27 +89,27 @@ public class OrderDetails {
         this.product = product;
     }
 
-    public int getQuantityOrdered() {
+    public Integer getQuantityOrdered() {
         return quantityOrdered;
     }
 
-    public void setQuantityOrdered(int quantityOrdered) {
+    public void setQuantityOrdered(Integer quantityOrdered) {
         this.quantityOrdered = quantityOrdered;
     }
 
-    public double getPriceEach() {
+    public Double getPriceEach() {
         return priceEach;
     }
 
-    public void setPriceEach(double priceEach) {
+    public void setPriceEach(Double priceEach) {
         this.priceEach = priceEach;
     }
 
-    public int getOrderLineNumber() {
+    public Integer getOrderLineNumber() {
         return orderLineNumber;
     }
 
-    public void setOrderLineNumber(int orderLineNumber) {
+    public void setOrderLineNumber(Integer orderLineNumber) {
         this.orderLineNumber = orderLineNumber;
     }
 
@@ -117,13 +118,15 @@ public class OrderDetails {
         if (this == o) return true;
         if (!(o instanceof OrderDetails)) return false;
         OrderDetails that = (OrderDetails) o;
-        return getOrderNumber() == that.getOrderNumber() && getQuantityOrdered() == that.getQuantityOrdered()
+        return getOrderNumber().equals(that.getOrderNumber()) && getQuantityOrdered().equals(that.getQuantityOrdered())
                 && Double.compare(that.getPriceEach(), getPriceEach()) == 0
-                && getOrderLineNumber() == that.getOrderLineNumber() && getProductCode().equals(that.getProductCode());
+                && getOrderLineNumber().equals(that.getOrderLineNumber())
+                && getProductCode().equals(that.getProductCode());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getProductCode(), getOrderNumber(), getQuantityOrdered(), getPriceEach(), getOrderLineNumber());
+        return Objects.hash(getProductCode(), getOrderNumber(), getQuantityOrdered(), getPriceEach(),
+                getOrderLineNumber());
     }
 }

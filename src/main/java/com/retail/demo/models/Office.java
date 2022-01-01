@@ -15,7 +15,7 @@ public class Office {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "officecode")
-    private int officeCode;
+    private Integer officeCode;
 
     @Column(name = "city")
     private String city;
@@ -39,7 +39,7 @@ public class Office {
 
     public Office() {}
 
-    public Office(int officeCode, String city, String phone, String addressLine, String country, String postalCode) {
+    public Office(Integer officeCode, String city, String phone, String addressLine, String country, String postalCode) {
         this.officeCode = officeCode;
         this.city = city;
         this.phone = phone;
@@ -48,11 +48,11 @@ public class Office {
         this.postalCode = postalCode;
     }
 
-    public int getOfficeCode() {
+    public Integer getOfficeCode() {
         return officeCode;
     }
 
-    public void setOfficeCode(int officeCode) {
+    public void setOfficeCode(Integer officeCode) {
         this.officeCode = officeCode;
     }
 

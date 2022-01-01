@@ -41,15 +41,15 @@ public class Product {
     private String productDescription;
 
     @Column(name = "quantityinstock")
-    private int quantityInStock;
+    private Integer quantityInStock;
 
     @Column(name = "buyprice")
-    private double buyPrice;
+    private Double buyPrice;
 
     public Product() {}
 
     public Product(String productCode, ProductLine productLine, String productName, String productVendor,
-                   String productDescription, int quantityInStock, double buyPrice) {
+                   String productDescription, Integer quantityInStock, Double buyPrice) {
         this.productCode = productCode;
         this.productLine = productLine;
         this.productName = productName;
@@ -99,19 +99,19 @@ public class Product {
         this.productDescription = productDescription;
     }
 
-    public int getQuantityInStock() {
+    public Integer getQuantityInStock() {
         return quantityInStock;
     }
 
-    public void setQuantityInStock(int quantityInStock) {
+    public void setQuantityInStock(Integer quantityInStock) {
         this.quantityInStock = quantityInStock;
     }
 
-    public double getBuyPrice() {
+    public Double getBuyPrice() {
         return buyPrice;
     }
 
-    public void setBuyPrice(double buyPrice) {
+    public void setBuyPrice(Double buyPrice) {
         this.buyPrice = buyPrice;
     }
 
@@ -128,11 +128,18 @@ public class Product {
         if (this == o) return true;
         if (!(o instanceof Product)) return false;
         Product product = (Product) o;
-        return getQuantityInStock() == product.getQuantityInStock() && Double.compare(product.getBuyPrice(), getBuyPrice()) == 0 && getProductCode().equals(product.getProductCode()) && getProductLine().equals(product.getProductLine()) && getProductName().equals(product.getProductName()) && getProductVendor().equals(product.getProductVendor()) && getProductDescription().equals(product.getProductDescription());
+        return getQuantityInStock().equals(product.getQuantityInStock())
+                && Double.compare(product.getBuyPrice(), getBuyPrice()) == 0
+                && getProductCode().equals(product.getProductCode())
+                && getProductLine().equals(product.getProductLine())
+                && getProductName().equals(product.getProductName())
+                && getProductVendor().equals(product.getProductVendor())
+                && getProductDescription().equals(product.getProductDescription());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getProductCode(), getProductLine(), getProductName(), getProductVendor(), getProductDescription(), getQuantityInStock(), getBuyPrice());
+        return Objects.hash(getProductCode(), getProductLine(), getProductName(), getProductVendor(),
+                getProductDescription(), getQuantityInStock(), getBuyPrice());
     }
 }

@@ -25,4 +25,41 @@ public class CustomerService {
     public List<Customer> getTopTen() {
         return new ArrayList<>(repository.getTopTenCustomers());
     }
+
+    private boolean existsById(Integer id) {
+        return repository.existsById(id);
+    }
+
+    public Customer findById(Integer id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    public void save(Customer customer) throws Exception {
+
+        if (customer.getCustomerNumber() != null && existsById(customer.getCustomerNumber())) {
+            throw new Exception("User with id: " + customer.getCustomerName() + " already exists");
+        }
+        repository.save(customer);
+    }
+
+    public void update(Customer customer) throws Exception {
+
+        if (!existsById(customer.getCustomerNumber())) {
+            throw new Exception("Cannot find User with id: " + customer.getCustomerName());
+        }
+        repository.save(customer);
+    }
+
+    public void deleteById(Integer id) throws Exception {
+        if (!existsById(id)) {
+            throw new Exception("Cannot find Customer with id: " + id);
+        }
+        else {
+            repository.deleteById(id);
+        }
+    }
+
+    public Long count() {
+        return repository.count();
+    }
 }

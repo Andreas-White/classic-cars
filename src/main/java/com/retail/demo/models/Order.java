@@ -17,7 +17,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ordernumber")
-    private int orderNumber;
+    private Integer orderNumber;
 
     @Column(name = "orderdate", columnDefinition = "DATE")
     private LocalDate orderDate;
@@ -47,7 +47,7 @@ public class Order {
 
     public Order() {}
 
-    public Order(int orderNumber, LocalDate orderDate, LocalDate requiredDate, String status, Customer customer) {
+    public Order(Integer orderNumber, LocalDate orderDate, LocalDate requiredDate, String status, Customer customer) {
         this.orderNumber = orderNumber;
         this.orderDate = orderDate;
         this.requiredDate = requiredDate;
@@ -55,11 +55,11 @@ public class Order {
         this.customer = customer;
     }
 
-    public int getOrderNumber() {
+    public Integer getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(int orderNumber) {
+    public void setOrderNumber(Integer orderNumber) {
         this.orderNumber = orderNumber;
     }
 
