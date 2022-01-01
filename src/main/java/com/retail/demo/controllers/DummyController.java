@@ -11,7 +11,6 @@ import java.util.List;
 @RestController(value = "/")
 public class DummyController {
 
-    private CustomerService customerService;
     private EmployeeService employeeService;
     private OfficeService officeService;
     private OrderDetailsService orderDetailsService;
@@ -19,15 +18,6 @@ public class DummyController {
     private PaymentService paymentService;
     private ProductService productService;
     private ProductLineService productLineService;
-
-    public CustomerService getCustomerService() {
-        return customerService;
-    }
-
-    @Autowired
-    public void setCustomerService(CustomerService customerService) {
-        this.customerService = customerService;
-    }
 
     public EmployeeService getEmployeeService() {
         return employeeService;
@@ -100,11 +90,6 @@ public class DummyController {
     @GetMapping("/home")
     public String home() {
         return "<h1>This is the home page</h1>";
-    }
-
-    @GetMapping("/allCustomers")
-    public List<Customer> getCustomers() {
-        return getCustomerService().getAllCustomers();
     }
 
     @GetMapping("/allEmployees")

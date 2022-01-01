@@ -21,4 +21,8 @@ public class CustomerService {
     public List<Customer> getAllCustomers() {
         return new ArrayList<>(repository.findAll());
     }
+
+    public List<Customer> getTopTen() {
+        return new ArrayList<>(repository.getTopTenCustomers());
+    }
 }
