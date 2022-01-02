@@ -34,7 +34,7 @@ public class Office {
 
     @OneToMany(mappedBy = "office", fetch = FetchType.LAZY)
     @Cascade(CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference(value = "office-employee")
     private List<Employee> employees;
 
     public Office() {}

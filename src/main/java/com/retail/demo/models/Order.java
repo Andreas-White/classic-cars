@@ -37,12 +37,12 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "customernumber")
-    @JsonBackReference
+    @JsonBackReference(value = "order-customer")
     private Customer customer;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
     @Cascade(CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference(value = "order_details-order")
     private List<OrderDetails> orderDetails;
 
     public Order() {}

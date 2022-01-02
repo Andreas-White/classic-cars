@@ -40,7 +40,7 @@ public class Customer {
     @ManyToOne(fetch = FetchType.LAZY)
     @Cascade(CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "salesperemployeenumber")
-    @JsonBackReference
+    @JsonBackReference(value = "employee-customer")
     private Employee employee;
 
     @Column(name = "creditlimit")
@@ -48,19 +48,19 @@ public class Customer {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     @Cascade(CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference(value = "payment-customer")
     private List<Payment> payments;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     @Cascade(CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference(value = "order-customer")
     private List<Order> orders;
 
     public Customer() {}
 
-    public Customer(Integer customerNumber, String customerName, String phone,
+    public Customer(String customerName, String phone,
                     String addressLine1, String city, String country) {
-        this.customerNumber = customerNumber;
+        //this.customerNumber = customerNumber;
         this.customerName = customerName;
         this.phone = phone;
         this.addressLine1 = addressLine1;

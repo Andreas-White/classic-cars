@@ -28,13 +28,13 @@ public class OrderDetails {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ordernumber")
     @Cascade(CascadeType.SAVE_UPDATE)
-    @JsonBackReference
+    @JsonBackReference(value = "order_details-order")
     private Order order;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productcode")
     @Cascade(CascadeType.SAVE_UPDATE)
-    @JsonBackReference
+    @JsonBackReference(value = "product-order_details")
     private Product product;
 
     @Column(name = "quantityordered")

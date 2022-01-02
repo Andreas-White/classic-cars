@@ -21,7 +21,7 @@ public class ProductLine {
 
     @OneToMany(mappedBy = "productLine",fetch = FetchType.LAZY)
     @Cascade(CascadeType.SAVE_UPDATE)
-    @JsonManagedReference
+    @JsonManagedReference(value = "product-product_line")
     private List<Product> products;
 
     @Column(name = "textdescription")

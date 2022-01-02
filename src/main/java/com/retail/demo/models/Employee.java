@@ -31,7 +31,7 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "officecode")
     @Cascade(CascadeType.SAVE_UPDATE)
-    @JsonBackReference
+    @JsonBackReference(value = "office-employee")
     private Office office;
 
     @Column(name = "jobtitle")
@@ -39,7 +39,7 @@ public class Employee {
 
     @OneToMany(mappedBy = "employee",fetch = FetchType.LAZY)
     @Cascade(CascadeType.SAVE_UPDATE)
-    @JsonManagedReference
+    @JsonManagedReference(value = "employee-customer")
     private List<Customer> customers;
 
     public Employee() {}

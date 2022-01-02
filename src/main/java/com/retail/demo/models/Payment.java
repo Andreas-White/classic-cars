@@ -22,7 +22,7 @@ public class Payment {
     @ManyToOne(fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "customernumber")
-    @JsonBackReference
+    @JsonBackReference(value = "payment-customer")
     private Customer customer;
 
     @Column(name = "paymentdate", columnDefinition = "DATE")

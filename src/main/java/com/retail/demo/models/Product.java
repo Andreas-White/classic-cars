@@ -23,12 +23,12 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "productline")
-    @JsonBackReference
+    @JsonBackReference(value = "product-product_line")
     private ProductLine productLine;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     @Cascade(CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference(value = "product-order_details")
     private List<OrderDetails> orderDetails;
 
     @Column(name = "productname")
