@@ -115,7 +115,7 @@ public class Employee {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return getEmployeeNumber() == employee.getEmployeeNumber() && getLastName().equals(employee.getLastName())
+        return getEmployeeNumber().equals(employee.getEmployeeNumber()) && getLastName().equals(employee.getLastName())
                 && getFirstName().equals(employee.getFirstName()) && getEmail().equals(employee.getEmail())
                 && getOffice().equals(employee.getOffice()) && getJobTitle().equals(employee.getJobTitle());
     }

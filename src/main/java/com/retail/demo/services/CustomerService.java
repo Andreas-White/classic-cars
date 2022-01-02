@@ -40,7 +40,12 @@ public class CustomerService {
 
     public void save(Customer customer) throws Exception {
 
-        if (customer.getCustomerNumber() != null && existsById(customer.getCustomerNumber())) {
+        if (customer.getCustomerNumber() == null) {
+            Integer id = repository.getMaxId() + 3;
+            customer.setCustomerNumber(id);
+        }
+
+        if (existsById(customer.getCustomerNumber())) {
             throw new Exception("User with id: " + customer.getCustomerName() + " already exists");
         }
         repository.save(customer);
