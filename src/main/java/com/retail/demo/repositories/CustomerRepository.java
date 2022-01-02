@@ -14,4 +14,6 @@ public interface CustomerRepository extends JpaRepository<Customer,Integer> {
             "group by cus.customerNumber " +
             "order by sum(payments.amount) desc limit 10;",nativeQuery = true)
     List<Customer> getTopTenCustomers();
+
+    Customer getCustomerByCustomerName(String name);
 }

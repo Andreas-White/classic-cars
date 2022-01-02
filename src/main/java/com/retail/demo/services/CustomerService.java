@@ -34,6 +34,10 @@ public class CustomerService {
         return repository.findById(id).orElse(null);
     }
 
+    public Customer findByName(String name) {
+        return repository.getCustomerByCustomerName(name);
+    }
+
     public void save(Customer customer) throws Exception {
 
         if (customer.getCustomerNumber() != null && existsById(customer.getCustomerNumber())) {

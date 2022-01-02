@@ -3,9 +3,7 @@ package com.retail.demo.controllers;
 import com.retail.demo.models.Customer;
 import com.retail.demo.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,4 +25,23 @@ public class CustomerController {
 
     @GetMapping("/top-ten")
     public List<Customer> getTopTen() { return customerService.getTopTen(); }
+
+    @GetMapping("/id/{id}")
+    public Customer getCustomerById(@PathVariable Integer id) {
+        return customerService.findById(id);
+    }
+
+    @GetMapping("/name/{name}")
+    public Customer getCustomerByName(@PathVariable String name) {
+        return customerService.findByName(name);
+    }
+
+    @PostMapping("/add-customer")
+    public void addCustomer(@RequestBody Customer customer) {
+        try {
+            customerService.save(customer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
