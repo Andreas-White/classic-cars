@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class OrderService {
 
-    private OrderRepository repository;
+    private final OrderRepository repository;
 
     @Autowired
     public OrderService(OrderRepository repository) {
@@ -22,7 +22,7 @@ public class OrderService {
         return new ArrayList<>(repository.findAll());
     }
 
-    private boolean existsById(Integer id) {
+    public Boolean existsById(Integer id) {
         return repository.existsById(id);
     }
 

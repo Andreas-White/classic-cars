@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/office")
 public class OfficeController {
 
-    private OfficeService officeService;
+    private final OfficeService officeService;
 
     @Autowired
     public OfficeController(OfficeService officeService) {

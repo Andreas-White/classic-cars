@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    private ProductRepository repository;
+    private final ProductRepository repository;
 
     @Autowired
     public ProductService(ProductRepository repository) {
@@ -21,4 +21,9 @@ public class ProductService {
     public List<Product> getAllProducts() {
         return new ArrayList<>(repository.findAll());
     }
+
+    public boolean existsById(String id) {
+        return this.repository.existsById(id);
+    }
+
 }
