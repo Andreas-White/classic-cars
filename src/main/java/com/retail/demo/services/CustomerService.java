@@ -26,6 +26,18 @@ public class CustomerService {
         return new ArrayList<>(repository.getTopTenCustomers());
     }
 
+    public List<Integer> getTopTenAmount() {
+        return new ArrayList<>(repository.getTopTenCustomersAmount());
+    }
+
+    public List<Customer> getBottomTen() {
+        return new ArrayList<>(repository.getBottomTenCustomers());
+    }
+
+    public List<Integer> getBottomTenAmount() {
+        return new ArrayList<>(repository.getBottomTenCustomersAmount());
+    }
+
     private boolean existsById(Integer id) {
         return repository.existsById(id);
     }
@@ -56,6 +68,10 @@ public class CustomerService {
 
         if (!existsById(customer.getCustomerNumber())) {
             throw new Exception("Cannot find customer with id: " + customer.getCustomerName());
+        }
+
+        if (customer.getCustomerNumber() == null) {
+            throw new Exception("There was no id for customer: " + customer.getCustomerName());
         }
         repository.save(customer);
     }

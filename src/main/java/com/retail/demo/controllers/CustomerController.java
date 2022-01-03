@@ -26,7 +26,10 @@ public class CustomerController {
     @GetMapping("/top-ten")
     public List<Customer> getTopTen() { return customerService.getTopTen(); }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/bottom-ten")
+    public List<Customer> getBottomTen() { return customerService.getBottomTen(); }
+
+    @GetMapping("/{id}")
     public Customer getCustomerById(@PathVariable Integer id) {
         return customerService.findById(id);
     }

@@ -28,10 +28,13 @@ public class Employee {
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "officecode")
+    @JoinColumn(name = "officecode", insertable = false, updatable = false)
     @Cascade(CascadeType.SAVE_UPDATE)
     @JsonBackReference(value = "office-employee")
     private Office office;
+
+    @Column(name = "officecode")
+    private Integer officeCode;
 
     @Column(name = "jobtitle")
     private String jobTitle;
@@ -42,16 +45,6 @@ public class Employee {
     private List<Customer> customers;
 
     public Employee() {}
-
-    public Employee(Integer employeeNumber, String lastName, String firstName,
-                    String email, Office office, String jobTitle) {
-        this.employeeNumber = employeeNumber;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.email = email;
-        this.office = office;
-        this.jobTitle = jobTitle;
-    }
 
     public Integer getEmployeeNumber() {
         return employeeNumber;
@@ -109,6 +102,14 @@ public class Employee {
         this.customers = customers;
     }
 
+    public Integer getOfficeCode() {
+        return officeCode;
+    }
+
+    public void setOfficeCode(Integer officeCode) {
+        this.officeCode = officeCode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -116,12 +117,12 @@ public class Employee {
         Employee employee = (Employee) o;
         return getEmployeeNumber().equals(employee.getEmployeeNumber()) && getLastName().equals(employee.getLastName())
                 && getFirstName().equals(employee.getFirstName()) && getEmail().equals(employee.getEmail())
-                && getOffice().equals(employee.getOffice()) && getJobTitle().equals(employee.getJobTitle());
+                && getOfficeCode().equals(employee.getOfficeCode()) && getJobTitle().equals(employee.getJobTitle());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getEmployeeNumber(), getLastName(), getFirstName(),
-                getEmail(), getOffice(), getJobTitle());
+                getEmail(), getOfficeCode(), getJobTitle());
     }
 }
