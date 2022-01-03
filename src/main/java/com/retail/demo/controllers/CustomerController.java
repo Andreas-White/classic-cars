@@ -44,4 +44,22 @@ public class CustomerController {
             e.printStackTrace();
         }
     }
+
+    @PutMapping("/update-customer")
+    public void updateCustomer(@RequestBody Customer customer) {
+        try {
+            customerService.update(customer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @DeleteMapping("/delete-customer/{id}")
+    public void deleteCustomer(@PathVariable Integer id) {
+        try {
+            customerService.deleteById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -45,8 +45,9 @@ public class CustomerService {
             customer.setCustomerNumber(id);
         }
 
-        if (existsById(customer.getCustomerNumber())) {
-            throw new Exception("User with id: " + customer.getCustomerName() + " already exists");
+        if (existsById(customer.getCustomerNumber()) ||
+                repository.existsDistinctByCustomerName(customer.getCustomerName())) {
+            throw new Exception("Customer: " + customer.getCustomerName() + " already exists");
         }
         repository.save(customer);
     }
@@ -54,14 +55,14 @@ public class CustomerService {
     public void update(Customer customer) throws Exception {
 
         if (!existsById(customer.getCustomerNumber())) {
-            throw new Exception("Cannot find User with id: " + customer.getCustomerName());
+            throw new Exception("Cannot find customer with id: " + customer.getCustomerName());
         }
         repository.save(customer);
     }
 
     public void deleteById(Integer id) throws Exception {
         if (!existsById(id)) {
-            throw new Exception("Cannot find Customer with id: " + id);
+            throw new Exception("Cannot find customer with id: " + id);
         }
         else {
             repository.deleteById(id);

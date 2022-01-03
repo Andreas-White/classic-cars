@@ -15,7 +15,6 @@ import java.util.Objects;
 public class Customer {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customernumber")
     private Integer customerNumber;
 
@@ -39,9 +38,12 @@ public class Customer {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @Cascade(CascadeType.SAVE_UPDATE)
-    @JoinColumn(name = "salesperemployeenumber")
+    @JoinColumn(name = "salesperemployeenumber", insertable = false, updatable = false)
     @JsonBackReference(value = "employee-customer")
     private Employee employee;
+
+    @Column(name = "salesperemployeenumber")
+    private Integer salesPerEmployeeNumber;
 
     @Column(name = "creditlimit")
     private double creditLimit;
@@ -57,16 +59,6 @@ public class Customer {
     private List<Order> orders;
 
     public Customer() {}
-
-    public Customer(String customerName, String phone,
-                    String addressLine1, String city, String country) {
-        //this.customerNumber = customerNumber;
-        this.customerName = customerName;
-        this.phone = phone;
-        this.addressLine1 = addressLine1;
-        this.city = city;
-        this.country = country;
-    }
 
     public Integer getCustomerNumber() {
         return customerNumber;
@@ -156,19 +148,29 @@ public class Customer {
         this.orders = orders;
     }
 
+    public Integer getSalesPerEmployeeNumber() {
+        return salesPerEmployeeNumber;
+    }
+
+    public void setSalesPerEmployeeNumber(Integer salesPerEmployeeNumber) {
+        this.salesPerEmployeeNumber = salesPerEmployeeNumber;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Customer)) return false;
         Customer customer = (Customer) o;
-        return getCustomerNumber() == customer.getCustomerNumber()
+        return getCustomerNumber().equals(customer.getCustomerNumber())
                 && getCustomerName().equals(customer.getCustomerName()) && getPhone().equals(customer.getPhone())
                 && getAddressLine1().equals(customer.getAddressLine1()) && getCity().equals(customer.getCity())
-                && getCountry().equals(customer.getCountry());
+                && getCountry().equals(customer.getCountry())
+                && getSalesPerEmployeeNumber().equals(customer.getSalesPerEmployeeNumber());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCustomerNumber(), getCustomerName(), getPhone(), getAddressLine1(), getCity(), getCountry());
+        return Objects.hash(getCustomerNumber(), getCustomerName(), getPhone(),
+                getAddressLine1(), getCity(), getCountry(), getSalesPerEmployeeNumber());
     }
 }

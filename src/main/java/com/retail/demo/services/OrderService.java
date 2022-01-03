@@ -21,4 +21,25 @@ public class OrderService {
     public List<Order> getAllOrders() {
         return new ArrayList<>(repository.findAll());
     }
+
+    private boolean existsById(Integer id) {
+        return repository.existsById(id);
+    }
+
+    public Order findById(Integer id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    public void save(Order order) throws Exception {
+
+        if (order.getOrderNumber() == null) {
+            Integer id = repository.getMaxId() + 3;
+            order.setOrderNumber(id);
+        }
+
+        if (existsById(order.getOrderNumber())) {
+            throw new Exception("Order already exists");
+        }
+        repository.save(order);
+    }
 }

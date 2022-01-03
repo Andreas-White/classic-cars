@@ -13,7 +13,6 @@ import java.util.Objects;
 public class Office {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "officecode")
     private Integer officeCode;
 

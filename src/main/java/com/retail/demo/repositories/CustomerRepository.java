@@ -17,6 +17,8 @@ public interface CustomerRepository extends JpaRepository<Customer,Integer> {
 
     Customer getCustomerByCustomerName(String name);
 
+    boolean existsDistinctByCustomerName(String name);
+
     @Query(value = "SELECT max(customerNumber) FROM customers;", nativeQuery = true)
     Integer getMaxId();
 }
