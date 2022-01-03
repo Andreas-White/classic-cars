@@ -38,15 +38,6 @@ public class Office {
 
     public Office() {}
 
-    public Office(Integer officeCode, String city, String phone, String addressLine, String country, String postalCode) {
-        this.officeCode = officeCode;
-        this.city = city;
-        this.phone = phone;
-        this.addressLine = addressLine;
-        this.country = country;
-        this.postalCode = postalCode;
-    }
-
     public Integer getOfficeCode() {
         return officeCode;
     }
@@ -108,7 +99,9 @@ public class Office {
         if (this == o) return true;
         if (!(o instanceof Office)) return false;
         Office office = (Office) o;
-        return getOfficeCode() == office.getOfficeCode() && getCity().equals(office.getCity()) && getPhone().equals(office.getPhone()) && getAddressLine().equals(office.getAddressLine()) && getCountry().equals(office.getCountry()) && getPostalCode().equals(office.getPostalCode());
+        return getOfficeCode().equals(office.getOfficeCode()) && getCity().equals(office.getCity())
+                && getPhone().equals(office.getPhone()) && getAddressLine().equals(office.getAddressLine())
+                && getCountry().equals(office.getCountry()) && getPostalCode().equals(office.getPostalCode());
     }
 
     @Override

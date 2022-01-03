@@ -31,7 +31,7 @@ public class EmployeeController {
     @GetMapping("/name")
     public Employee getEmployee(@RequestParam String first,
                                 @RequestParam String last) {
-        return this.employeeService.getByName(first,last);
+        return this.employeeService.getByName(first, last);
     }
 
     @GetMapping("/all-sellers")
@@ -68,7 +68,7 @@ public class EmployeeController {
     @PostMapping("/add-employee")
     public void addCustomer(@RequestBody Employee employee) {
         try {
-            employeeService.save(employee);
+            this.employeeService.save(employee);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,7 +77,7 @@ public class EmployeeController {
     @PutMapping("/update-employee")
     public void updateCustomer(@RequestBody Employee employee) {
         try {
-            employeeService.update(employee);
+            this.employeeService.update(employee);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -86,7 +86,7 @@ public class EmployeeController {
     @DeleteMapping("/delete-employee/{id}")
     public void deleteCustomer(@PathVariable Integer id) {
         try {
-            employeeService.deleteById(id);
+            this.employeeService.deleteById(id);
         } catch (Exception e) {
             e.printStackTrace();
         }

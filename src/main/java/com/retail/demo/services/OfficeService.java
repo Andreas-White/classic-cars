@@ -1,6 +1,5 @@
 package com.retail.demo.services;
 
-import com.retail.demo.models.Customer;
 import com.retail.demo.models.Office;
 import com.retail.demo.repositories.OfficeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,39 +19,60 @@ public class OfficeService {
     }
 
     public List<Office> getAllOffices() {
-        return new ArrayList<>(repository.findAll());
+        return new ArrayList<>(this.repository.findAll());
     }
 
     private boolean existsById(Integer id) {
-        return repository.existsById(id);
+        return this.repository.existsById(id);
     }
 
     public Office findById(Integer id) {
-        return repository.findById(id).orElse(null);
-    }
-
-    public Office findByAddress(String address) {
-        return repository.getOfficeByAddressLine(address);
+        return this.repository.findById(id).orElse(null);
     }
 
     public Office findByCity(String city) {
-        return repository.getOfficeByCity(city);
+        return this.repository.getOfficeByCity(city);
     }
 
     public List<Office> findByCountry(String country) {
-        return repository.getAllByCountry(country);
+        return this.repository.getAllByCountry(country);
     }
 
     public void save(Office office) throws Exception {
 
         if (office.getOfficeCode() == null) {
-            Integer id = repository.getMaxId() + 3;
+            Integer id = Math.toIntExact(count() + 1);
             office.setOfficeCode(id);
         }
 
-        if (existsById(office.getOfficeCode())) {
-            throw new Exception("Office already exists");
+        if (office.getOfficeCode() != null && existsById(office.getOfficeCode())) {
+            throw new Exception("Office already exists" + office.getOfficeCode());
         }
-        repository.save(office);
+        this.repository.save(office);
+    }
+
+    public void update(Office office) throws Exception {
+
+        if (!existsById(office.getOfficeCode())) {
+            throw new Exception("Cannot find office in: " + office.getCity());
+        }
+
+        if (office.getOfficeCode() == null) {
+            throw new Exception("There was no id for office in: " + office.getCity());
+        }
+        this.repository.save(office);
+    }
+
+    public void deleteById(Integer id) throws Exception {
+        if (!existsById(id)) {
+            throw new Exception("Cannot find customer with id: " + id);
+        }
+        else {
+            repository.deleteById(id);
+        }
+    }
+
+    public Long count() {
+        return repository.count();
     }
 }

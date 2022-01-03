@@ -19,57 +19,57 @@ public class EmployeeService {
     }
 
     public List<Employee> getAllEmployees() {
-        return new ArrayList<>(repository.findAll());
+        return new ArrayList<>(this.repository.findAll());
     }
 
     private boolean existsById(Integer id) {
-        return repository.existsById(id);
+        return this.repository.existsById(id);
     }
 
     public Employee getById(Integer id) {
-        return repository.findById(id).orElse(null);
+        return this.repository.findById(id).orElse(null);
     }
 
     public Employee getByName(String name, String lastName) {
-        return repository.getEmployeeByFirstNameAndLastName(name, lastName);
+        return this.repository.getEmployeeByFirstNameAndLastName(name, lastName);
     }
 
     public List<Employee> getEmployeesByOffice(String city) {
-        return repository.getEmployeesByOffice_City(city);
+        return this.repository.getEmployeesByOffice_City(city);
     }
 
     public List<Employee> getTopTenEmployees() {
-        return repository.getTopTenEmployees();
+        return this.repository.getTopTenEmployees();
     }
 
     public List<Integer> getTopTenIncomes() {
-        return repository.getTopTenEmployeesIncome();
+        return this.repository.getTopTenEmployeesIncome();
     }
 
     public List<Employee> getBottomTenEmployees() {
-        return repository.getBottomTenEmployees();
+        return this.repository.getBottomTenEmployees();
     }
 
     public List<Integer> getBottomTenIncomes() {
-        return repository.getBottomTenEmployeesIncome();
+        return this.repository.getBottomTenEmployeesIncome();
     }
 
     public List<Employee> getRepEmployees() {
-        return repository.getAllSellers();
+        return this.repository.getAllSellers();
     }
 
     public List<Employee> getVPs() {
-        return repository.getAllVPs();
+        return this.repository.getAllVPs();
     }
 
     public List<Employee> getManagers() {
-        return repository.getAllManagers();
+        return this.repository.getAllManagers();
     }
 
     public void save(Employee employee) throws Exception {
 
         if (employee.getEmployeeNumber() == null) {
-            Integer id = repository.getMaxId() + 3;
+            Integer id = this.repository.getMaxId() + 3;
             employee.setEmployeeNumber(id);
         }
 
@@ -77,7 +77,7 @@ public class EmployeeService {
             throw new Exception("Employee: " + employee.getFirstName() + " "
                     + employee.getLastName() + " already exists");
         }
-        repository.save(employee);
+        this.repository.save(employee);
     }
 
     public void update(Employee employee) throws Exception {
@@ -91,7 +91,7 @@ public class EmployeeService {
             throw new Exception("There was no id for employee: " + employee.getFirstName() + " "
                     + employee.getLastName());
         }
-        repository.save(employee);
+        this.repository.save(employee);
     }
 
     public void deleteById(Integer id) throws Exception {
@@ -99,7 +99,7 @@ public class EmployeeService {
             throw new Exception("Cannot find employee with id: " + id);
         }
         else {
-            repository.deleteById(id);
+            this.repository.deleteById(id);
         }
     }
 

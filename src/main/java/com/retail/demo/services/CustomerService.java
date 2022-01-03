@@ -23,45 +23,45 @@ public class CustomerService {
     }
 
     public List<Customer> getTopTen() {
-        return new ArrayList<>(repository.getTopTenCustomers());
+        return new ArrayList<>(this.repository.getTopTenCustomers());
     }
 
     public List<Integer> getTopTenAmount() {
-        return new ArrayList<>(repository.getTopTenCustomersAmount());
+        return new ArrayList<>(this.repository.getTopTenCustomersAmount());
     }
 
     public List<Customer> getBottomTen() {
-        return new ArrayList<>(repository.getBottomTenCustomers());
+        return new ArrayList<>(this.repository.getBottomTenCustomers());
     }
 
     public List<Integer> getBottomTenAmount() {
-        return new ArrayList<>(repository.getBottomTenCustomersAmount());
+        return new ArrayList<>(this.repository.getBottomTenCustomersAmount());
     }
 
     private boolean existsById(Integer id) {
-        return repository.existsById(id);
+        return this.repository.existsById(id);
     }
 
     public Customer findById(Integer id) {
-        return repository.findById(id).orElse(null);
+        return this.repository.findById(id).orElse(null);
     }
 
     public Customer findByName(String name) {
-        return repository.getCustomerByCustomerName(name);
+        return this.repository.getCustomerByCustomerName(name);
     }
 
     public void save(Customer customer) throws Exception {
 
         if (customer.getCustomerNumber() == null) {
-            Integer id = repository.getMaxId() + 3;
+            Integer id = this.repository.getMaxId() + 3;
             customer.setCustomerNumber(id);
         }
 
         if (existsById(customer.getCustomerNumber()) ||
-                repository.existsDistinctByCustomerName(customer.getCustomerName())) {
+                this.repository.existsDistinctByCustomerName(customer.getCustomerName())) {
             throw new Exception("Customer: " + customer.getCustomerName() + " already exists");
         }
-        repository.save(customer);
+        this.repository.save(customer);
     }
 
     public void update(Customer customer) throws Exception {
@@ -73,7 +73,7 @@ public class CustomerService {
         if (customer.getCustomerNumber() == null) {
             throw new Exception("There was no id for customer: " + customer.getCustomerName());
         }
-        repository.save(customer);
+        this.repository.save(customer);
     }
 
     public void deleteById(Integer id) throws Exception {
@@ -81,11 +81,11 @@ public class CustomerService {
             throw new Exception("Cannot find customer with id: " + id);
         }
         else {
-            repository.deleteById(id);
+            this.repository.deleteById(id);
         }
     }
 
     public Long count() {
-        return repository.count();
+        return this.repository.count();
     }
 }

@@ -20,29 +20,33 @@ public class CustomerController {
 
     @GetMapping("/list-all")
     public List<Customer> getCustomers() {
-        return customerService.getAllCustomers();
+        return this.customerService.getAllCustomers();
     }
 
     @GetMapping("/top-ten")
-    public List<Customer> getTopTen() { return customerService.getTopTen(); }
+    public List<Customer> getTopTen() {
+        return this.customerService.getTopTen();
+    }
 
     @GetMapping("/bottom-ten")
-    public List<Customer> getBottomTen() { return customerService.getBottomTen(); }
+    public List<Customer> getBottomTen() {
+        return this.customerService.getBottomTen();
+    }
 
     @GetMapping("/{id}")
     public Customer getCustomerById(@PathVariable Integer id) {
-        return customerService.findById(id);
+        return this.customerService.findById(id);
     }
 
     @GetMapping("/name/{name}")
     public Customer getCustomerByName(@PathVariable String name) {
-        return customerService.findByName(name);
+        return this.customerService.findByName(name);
     }
 
     @PostMapping("/add-customer")
     public void addCustomer(@RequestBody Customer customer) {
         try {
-            customerService.save(customer);
+            this.customerService.save(customer);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,7 +55,7 @@ public class CustomerController {
     @PutMapping("/update-customer")
     public void updateCustomer(@RequestBody Customer customer) {
         try {
-            customerService.update(customer);
+            this.customerService.update(customer);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,7 +64,7 @@ public class CustomerController {
     @DeleteMapping("/delete-customer/{id}")
     public void deleteCustomer(@PathVariable Integer id) {
         try {
-            customerService.deleteById(id);
+            this.customerService.deleteById(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
