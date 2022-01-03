@@ -15,13 +15,10 @@ import java.util.Objects;
 public class OrderDetails {
 
     @Id
-//    @GeneratedValue(generator = "uuid")
-//    @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(name = "productcode", insertable = false, updatable = false)
     private String productCode;
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ordernumber", insertable = false, updatable = false)
     private Integer orderNumber;
 
@@ -47,14 +44,6 @@ public class OrderDetails {
     private Integer orderLineNumber;
 
     public OrderDetails() {}
-
-    public OrderDetails(String productCode, Integer orderNumber, Integer quantityOrdered, Double priceEach, Integer orderLineNumber) {
-        this.productCode = productCode;
-        this.orderNumber = orderNumber;
-        this.quantityOrdered = quantityOrdered;
-        this.priceEach = priceEach;
-        this.orderLineNumber = orderLineNumber;
-    }
 
     public String getProductCode() {
         return productCode;

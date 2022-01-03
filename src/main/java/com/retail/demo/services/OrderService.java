@@ -1,5 +1,6 @@
 package com.retail.demo.services;
 
+import com.retail.demo.models.Customer;
 import com.retail.demo.models.Order;
 import com.retail.demo.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,30 @@ public class OrderService {
             throw new Exception("Order already exists");
         }
         repository.save(order);
+    }
+
+    public void update(Order order) throws Exception {
+
+        if (!existsById(order.getOrderNumber())) {
+            throw new Exception("Cannot find order with id: " + order.getOrderNumber());
+        }
+
+        if (order.getOrderNumber() == null) {
+            throw new Exception("There was no id for order: " + order.getOrderNumber());
+        }
+        this.repository.save(order);
+    }
+
+    public void deleteById(Integer id) throws Exception {
+        if (!existsById(id)) {
+            throw new Exception("Cannot find order with id: " + id);
+        }
+        else {
+            this.repository.deleteById(id);
+        }
+    }
+
+    public Long count() {
+        return this.repository.count();
     }
 }

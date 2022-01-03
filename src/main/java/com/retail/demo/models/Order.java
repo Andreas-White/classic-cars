@@ -35,9 +35,12 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinColumn(name = "customernumber")
+    @JoinColumn(name = "customernumber",  insertable = false, updatable = false)
     @JsonBackReference(value = "order-customer")
     private Customer customer;
+
+    @Column(name = "customernumber")
+    private Integer customerNumber;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
     @Cascade(CascadeType.ALL)
@@ -45,14 +48,6 @@ public class Order {
     private List<OrderDetails> orderDetails;
 
     public Order() {}
-
-    public Order(Integer orderNumber, LocalDate orderDate, LocalDate requiredDate, String status, Customer customer) {
-        this.orderNumber = orderNumber;
-        this.orderDate = orderDate;
-        this.requiredDate = requiredDate;
-        this.status = status;
-        this.customer = customer;
-    }
 
     public Integer getOrderNumber() {
         return orderNumber;
@@ -116,6 +111,14 @@ public class Order {
 
     public void setOrderDetails(List<OrderDetails> orderDetails) {
         this.orderDetails = orderDetails;
+    }
+
+    public Integer getCustomerNumber() {
+        return customerNumber;
+    }
+
+    public void setCustomerNumber(Integer customerNumber) {
+        this.customerNumber = customerNumber;
     }
 
     @Override
