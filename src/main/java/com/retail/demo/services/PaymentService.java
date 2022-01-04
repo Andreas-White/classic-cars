@@ -51,7 +51,7 @@ public class PaymentService {
             throw new Exception("Cannot find payment with id: " + payment.getCheckNumber());
         }
 
-        if (payment.getCustomerNumber() == null) {
+        if (payment.getCheckNumber() == null) {
             throw new Exception("There was no id for payment: " + payment.getCheckNumber());
         }
         this.repository.save(payment);

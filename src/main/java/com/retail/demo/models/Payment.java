@@ -3,7 +3,6 @@ package com.retail.demo.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,8 +13,6 @@ import java.util.Objects;
 public class Payment {
 
     @Id
-//    @GeneratedValue(generator = "uuid")
-//    @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(name = "checknumber")
     private String checkNumber;
 

@@ -24,12 +24,12 @@ public class PaymentController {
     }
 
     @GetMapping("/{id}")
-    public Payment getCustomerById(@PathVariable String id) {
+    public Payment getPaymentById(@PathVariable String id) {
         return this.service.findById(id);
     }
 
     @PostMapping("/add-payment")
-    public void addCustomer(@RequestBody Payment payment) {
+    public void addPayment(@RequestBody Payment payment) {
         try {
             this.service.save(payment);
         } catch (Exception e) {
@@ -38,7 +38,7 @@ public class PaymentController {
     }
 
     @PutMapping("/update-payment")
-    public void updateCustomer(@RequestBody Payment payment) {
+    public void updatePayment(@RequestBody Payment payment) {
         try {
             this.service.update(payment);
         } catch (Exception e) {
@@ -47,7 +47,7 @@ public class PaymentController {
     }
 
     @DeleteMapping("/delete-payment/{id}")
-    public void deleteCustomer(@PathVariable String id) {
+    public void deletePayment(@PathVariable String id) {
         try {
             this.service.deleteById(id);
         } catch (Exception e) {

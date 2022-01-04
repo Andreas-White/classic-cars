@@ -12,7 +12,6 @@ import java.util.List;
 public class DummyController {
 
     private ProductService productService;
-    private ProductLineService productLineService;
 
     public ProductService getProductService() {
         return productService;
@@ -21,15 +20,6 @@ public class DummyController {
     @Autowired
     public void setProductService(ProductService productService) {
         this.productService = productService;
-    }
-
-    public ProductLineService getProductLineService() {
-        return productLineService;
-    }
-
-    @Autowired
-    public void setProductLineService(ProductLineService productLineService) {
-        this.productLineService = productLineService;
     }
 
     @GetMapping("/")
@@ -45,10 +35,5 @@ public class DummyController {
     @GetMapping("/allProducts")
     public List<Product> getProducts() {
         return getProductService().getAllProducts();
-    }
-
-    @GetMapping("/allProductLines")
-    public List<ProductLine> getProductLines() {
-        return getProductLineService().getAllProductLines();
     }
 }

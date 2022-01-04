@@ -3,7 +3,6 @@ package com.retail.demo.models;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,8 +13,6 @@ import java.util.Objects;
 public class ProductLine {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(name = "productline")
     private String productLine;
 
@@ -28,10 +25,6 @@ public class ProductLine {
     private String textDescription;
 
     public ProductLine() {}
-
-    public ProductLine(String productLine) {
-        this.productLine = productLine;
-    }
 
     public String getProductLine() {
         return productLine;
