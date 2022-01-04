@@ -18,8 +18,6 @@ public interface OrderDetailsRepository extends JpaRepository<OrderDetails, Orde
 
     Boolean existsDistinctByOrderNumberAndProductCode(Integer number, String code);
 
-    void deleteDistinctByOrderNumberAndProductCode(Integer number, String code);
-
     @Modifying
     @Transactional
     @Query(value = "insert into orderdetails " +

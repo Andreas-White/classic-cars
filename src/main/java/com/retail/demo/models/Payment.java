@@ -14,16 +14,19 @@ import java.util.Objects;
 public class Payment {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
+//    @GeneratedValue(generator = "uuid")
+//    @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(name = "checknumber")
     private String checkNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinColumn(name = "customernumber")
+    @JoinColumn(name = "customernumber", insertable = false, updatable = false)
     @JsonBackReference(value = "payment-customer")
     private Customer customer;
+
+    @Column(name = "customernumber")
+    private Integer customerNumber;
 
     @Column(name = "paymentdate", columnDefinition = "DATE")
     private LocalDate 	paymentDate;
@@ -32,13 +35,6 @@ public class Payment {
     private Double amount;
 
     public Payment() {}
-
-    public Payment(String checkNumber, Customer customer, LocalDate paymentDate, Double amount) {
-        this.checkNumber = checkNumber;
-        this.customer = customer;
-        this.paymentDate = paymentDate;
-        this.amount = amount;
-    }
 
     public String getCheckNumber() {
         return checkNumber;
@@ -72,17 +68,29 @@ public class Payment {
         this.amount = amount;
     }
 
+    public Integer getCustomerNumber() {
+        return customerNumber;
+    }
+
+    public void setCustomerNumber(Integer customerNumber) {
+        this.customerNumber = customerNumber;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Payment)) return false;
         Payment payment = (Payment) o;
-        return Double.compare(payment.getAmount(), getAmount()) == 0 && getCheckNumber().equals(payment.getCheckNumber())
-                && getCustomer().equals(payment.getCustomer()) && getPaymentDate().equals(payment.getPaymentDate());
+        return Double.compare(payment.getAmount(), getAmount()) == 0
+                && getCheckNumber().equals(payment.getCheckNumber())
+                && getCustomer().equals(payment.getCustomer())
+                && getPaymentDate().equals(payment.getPaymentDate())
+                && getCustomerNumber().equals(payment.getCustomerNumber());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCheckNumber(), getCustomer(), getPaymentDate(), getAmount());
+        return Objects.hash(getCheckNumber(), getCustomerNumber(),
+                getCustomer(), getPaymentDate(), getAmount());
     }
 }
