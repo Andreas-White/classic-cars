@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>User List</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>{{title}}</h1>
+
+<div>
+    <nobr>
+        <a href="/customer/add-customer">Add Customer</a> |
+        <a href="/">Home</a>
+    </nobr>
+</div>
+<br/><br/>
+<div>
+    <table border="2">
+        <tr>
+            <th>Organization</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Postal Code</th>
+            <th>Country</th>
+            <th>Related Employee's ID</th>
+            <th>Credit Limit</th>
+            <th>Edit</th>
+        </tr>
+        {{#customers}}
+            <tr>
+                <td><a href="/customer/{{customerNumber}}">{{customerName}}</a></td>
+                <td>{{phone}}</td>
+                <td>{{addressLine1}}</td>
+                <td>{{city}}</td>
+                <td>{{#postalCode}}{{postalCode}}{{/postalCode}}</td>
+                <td>{{country}}</td>
+                <td>{{#salesPerEmployeeNumber}}{{salesPerEmployeeNumber}}{{/salesPerEmployeeNumber}}</td>
+                <td>{{#creditLimit}}{{creditLimit}}{{/creditLimit}}</td>
+                <td><a href="/customer/{{customerNumber}}">Edit</a></td>
+            </tr>
+        {{/customers}}
+    </table>
+</div>
+<br/><br/>
+{{>footer}}
+</body>
+</html>

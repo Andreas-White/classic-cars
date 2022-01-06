@@ -15,16 +15,17 @@ import java.util.Objects;
 public class Product {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(name = "productcode")
     private String productCode;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinColumn(name = "productline")
+    @JoinColumn(name = "productline", insertable = false, updatable = false)
     @JsonBackReference(value = "product-product_line")
-    private ProductLine productLine;
+    private ProductLine productLineObject;
+
+    @Column(name = "productline")
+    private String productLine;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     @Cascade(CascadeType.ALL)
@@ -48,17 +49,6 @@ public class Product {
 
     public Product() {}
 
-    public Product(String productCode, ProductLine productLine, String productName, String productVendor,
-                   String productDescription, Integer quantityInStock, Double buyPrice) {
-        this.productCode = productCode;
-        this.productLine = productLine;
-        this.productName = productName;
-        this.productVendor = productVendor;
-        this.productDescription = productDescription;
-        this.quantityInStock = quantityInStock;
-        this.buyPrice = buyPrice;
-    }
-
     public String getProductCode() {
         return productCode;
     }
@@ -67,11 +57,11 @@ public class Product {
         this.productCode = productCode;
     }
 
-    public ProductLine getProductLine() {
+    public String getProductLine() {
         return productLine;
     }
 
-    public void setProductLine(ProductLine productLine) {
+    public void setProductLine(String productLine) {
         this.productLine = productLine;
     }
 
@@ -121,6 +111,14 @@ public class Product {
 
     public void setOrderDetails(List<OrderDetails> orderDetails) {
         this.orderDetails = orderDetails;
+    }
+
+    public ProductLine getProductLineObject() {
+        return productLineObject;
+    }
+
+    public void setProductLineObject(ProductLine productLineObject) {
+        this.productLineObject = productLineObject;
     }
 
     @Override

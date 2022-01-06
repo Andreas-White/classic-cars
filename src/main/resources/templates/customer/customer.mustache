@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>User Details</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>View Customer</h1>
+<a href="/customer/list-all">Back to Customer List</a>
+<br/><br/>
+{{#customer}}
+    <table border="0">
+        <tr>
+            <td>Organization</td>
+            <td>:</td>
+            <td>{{customerName}}</td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>:</td>
+            <td>{{phone}}</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>:</td>
+            <td>{{addressLine1}}</td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>:</td>
+            <td>{{city}}</td>
+        </tr>
+        <tr>
+            <td>Postal Code</td>
+            <td>:</td>
+            <td>{{#postalCode}}{{postalCode}}{{/postalCode}}</td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td>:</td>
+            <td>{{country}}</td>
+        </tr>
+        <tr>
+            <td>Related Employee's ID</td>
+            <td>:</td>
+            <td>{{#salesPerEmployeeNumber}}{{salesPerEmployeeNumber}}{{/salesPerEmployeeNumber}}</td>
+        </tr>
+        <tr>
+            <td>Credit Limit</td>
+            <td>:</td>
+            <td>{{#creditLimit}}{{creditLimit}}{{/creditLimit}}</td>
+        </tr>
+    </table>
+    <br/><br/>
+    {{#allowDelete}}
+        <form action="/customer/delete-customer/{{id}}" method="POST">
+            Delete this user? <input type="submit" value="Yes" />
+        </form>
+    {{/allowDelete}}
+    {{^allowDelete}}
+        <div>
+            <a href="/customer/update-customer/{{customerNumber}}">Edit</a> |
+            <a href="/customer/delete-customer/{{customerNumber}}">Delete</a>
+        </div>
+    {{/allowDelete}}
+{{/customer}}
+{{#errorMessage}}
+    <div class="error">{{errorMessage}}</div>
+{{/errorMessage}}
+{{>footer}}
+</body>
+</html>

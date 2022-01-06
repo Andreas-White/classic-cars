@@ -31,10 +31,7 @@ public class ProductLineService {
     public void save(ProductLine productLine) throws Exception {
 
         if (productLine.getProductLine() == null) {
-            String id = this.repository.getMaxId();
-            String numPart = String.valueOf(Integer.parseInt(id.substring(2)) + 3);
-            String newId = id.substring(0,2).concat(numPart);
-            productLine.setProductLine(newId);
+            throw new Exception("You must provide a name for product line");
         }
 
         if (existsById(productLine.getProductLine())) {

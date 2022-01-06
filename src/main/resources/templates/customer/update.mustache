@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{{#add}}Create new Customer{{/add}}{{^add}}Edit Customer{{/add}}</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>{{#add}}Create new Customer:{{/add}}{{^add}}Edit Customer:{{/add}}</h1>
+<a href="/customer/list-all">Back to Customer List</a>
+<br/><br/>
+{{#customer}}
+    <form action="{{#add}}/customer/add-customer{{/add}}{{^add}}/customer/update-customer/{{id}}{{/add}}" name="customer" method="POST">
+        <table border="0">
+            {{#customerNumber}}
+                <tr>
+                    <td>ID</td>
+                    <td>:</td>
+                    <td>{{customerNumber}}</td>
+                </tr>
+            {{/customerNumber}}
+            <tr>
+                <td>Organization</td>
+                <td>:</td>
+                <td><input type="text" name="customerName" value="{{#customerName}}{{customerName}}{{/customerName}}" /></td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td>:</td>
+                <td><input type="text" name="phone" value="{{#phone}}{{phone}}{{/phone}}" /></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>:</td>
+                <td><input type="text" name="addressLine1" value="{{#addressLine1}}{{addressLine1}}{{/addressLine1}}" /></td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td>:</td>
+                <td><input type="text" name="city" value="{{#city}}{{city}}{{/city}}" /></td>
+            </tr>
+            <tr>
+                <td>Postal Code</td>
+                <td>:</td>
+                <td><input type="text" name="postalCode" value="{{#postalCode}}{{postalCode}}{{/postalCode}}" /></td>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td>:</td>
+                <td><input type="text" name="country" value="{{#country}}{{country}}{{/country}}" /></td>
+            </tr>
+            <tr>
+                <td>Related Employee's ID</td>
+                <td>:</td>
+                <td><input type="text" name="salesPerEmployeeNumber" value="{{#salesPerEmployeeNumber}}{{salesPerEmployeeNumber}}{{/salesPerEmployeeNumber}}" /></td>
+            </tr>
+            <tr>
+                <td>Credit Limit</td>
+                <td>:</td>
+                <td><input type="text" name="creditLimit" value="{{#creditLimit}}{{creditLimit}}{{/creditLimit}}" /></td>
+            </tr>
+        </table>
+        <input type="submit" value="{{#add}}Create{{/add}}{{^add}}Update{{/add}}" />
+    </form>
+{{/customer}}
+
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div class="error">{{#errorMessage}}{{errorMessage}}{{/errorMessage}}</div>
+{{>footer}}
+</body>
+</html>

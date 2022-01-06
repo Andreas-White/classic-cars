@@ -3,12 +3,14 @@ package com.retail.demo.services;
 import com.retail.demo.models.Customer;
 import com.retail.demo.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@PreAuthorize("hasRole('ROLE_USER')")
 public class CustomerService {
 
     private final CustomerRepository repository;
@@ -50,7 +52,8 @@ public class CustomerService {
         return this.repository.getCustomerByCustomerName(name);
     }
 
-    public void save(Customer customer) throws Exception {
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public Customer save(Customer customer) throws Exception {
 
         if (customer.getCustomerNumber() == null) {
             Integer id = this.repository.getMaxId() + 3;
@@ -61,9 +64,10 @@ public class CustomerService {
                 this.repository.existsDistinctByCustomerName(customer.getCustomerName())) {
             throw new Exception("Customer: " + customer.getCustomerName() + " already exists");
         }
-        this.repository.save(customer);
+        return this.repository.save(customer);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void update(Customer customer) throws Exception {
 
         if (!existsById(customer.getCustomerNumber())) {
@@ -76,6 +80,7 @@ public class CustomerService {
         this.repository.save(customer);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteById(Integer id) throws Exception {
         if (!existsById(id)) {
             throw new Exception("Cannot find customer with id: " + id);
