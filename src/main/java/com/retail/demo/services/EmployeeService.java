@@ -66,7 +66,7 @@ public class EmployeeService {
         return this.repository.getAllManagers();
     }
 
-    public void save(Employee employee) throws Exception {
+    public Employee save(Employee employee) throws Exception {
 
         if (employee.getEmployeeNumber() == null) {
             Integer id = this.repository.getMaxId() + 3;
@@ -77,7 +77,7 @@ public class EmployeeService {
             throw new Exception("Employee: " + employee.getFirstName() + " "
                     + employee.getLastName() + " already exists");
         }
-        this.repository.save(employee);
+        return this.repository.save(employee);
     }
 
     public void update(Employee employee) throws Exception {

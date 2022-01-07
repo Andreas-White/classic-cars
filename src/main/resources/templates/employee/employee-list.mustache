@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>User List</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>{{title}}</h1>
+
+<div>
+    <nobr>
+        <a href="/employee/add-customer">Add Employee</a> |
+        <a href="/">Home</a>
+    </nobr>
+</div>
+<br/><br/>
+<div>
+    <table border="2">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>email</th>
+            <th>Office Code</th>
+            <th>Job Title</th>
+            <th>Edit</th>
+        </tr>
+        {{#employees}}
+            <tr>
+                <td><a href="/customer/{{employeeNumber}}">{{firstName}}</a></td>
+                <td>{{lastName}}</td>
+                <td>{{email}}</td>
+                <td>{{officeCode}}</td>
+                <td>{{jobTitle}}</td>
+                <td><a href="/customer/{{employeeNumber}}">Edit</a></td>
+            </tr>
+        {{/employees}}
+    </table>
+</div>
+<br/><br/>
+{{>footer}}
+</body>
+</html>

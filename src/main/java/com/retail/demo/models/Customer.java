@@ -27,10 +27,10 @@ public class Customer {
     private String phone;
 
     @Column(name = "addressline1")
-    private String 	addressLine1;
+    private String addressLine1;
 
     @Column(name = "city")
-    private String 	city;
+    private String city;
 
     @Column(name = "postalcode")
     private String postalCode;

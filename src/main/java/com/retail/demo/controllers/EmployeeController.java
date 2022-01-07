@@ -3,11 +3,13 @@ package com.retail.demo.controllers;
 import com.retail.demo.models.Employee;
 import com.retail.demo.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/employee")
 public class EmployeeController {
 
@@ -19,8 +21,14 @@ public class EmployeeController {
     }
 
     @GetMapping("/list-all")
-    public List<Employee> getEmployees() {
-        return this.employeeService.getAllEmployees();
+    public String getEmployees(Model model) {
+        List<Employee> employees = this.employeeService.getAllEmployees();
+        String title = "All Employees";
+
+        model.addAttribute("employees", employees);
+        model.addAttribute("title",title);
+
+        return "/employee/employee-list";
     }
 
     @GetMapping("/{id}")
@@ -35,8 +43,14 @@ public class EmployeeController {
     }
 
     @GetMapping("/all-sellers")
-    public List<Employee> getSellers() {
-        return this.employeeService.getRepEmployees();
+    public String getSellers(Model model) {
+        List<Employee> employees = this.employeeService.getRepEmployees();
+        String title = "All sellers";
+
+        model.addAttribute("title", title);
+        model.addAttribute("employees", employees);
+
+        return "/employee/employee-list";
     }
 
     @GetMapping("/all-vps")

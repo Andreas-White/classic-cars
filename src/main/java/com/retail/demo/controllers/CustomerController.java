@@ -14,7 +14,6 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerService customerService;
-    //private final Integer ROWS = 5;
 
     @Autowired
     public CustomerController(CustomerService customerService) {

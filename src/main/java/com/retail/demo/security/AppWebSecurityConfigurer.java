@@ -22,7 +22,7 @@ public class AppWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
                 authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/customer/add-customer").hasAnyRole("ADMIN", "USER")
+//                .antMatchers(HttpMethod.POST, "/customer/add-customer").hasAnyRole("ADMIN", "USER")
                 .antMatchers(HttpMethod.PUT, "/customer/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/customer/**").hasRole("ADMIN").and().
                 requestCache().requestCache(new NullRequestCache()).and().

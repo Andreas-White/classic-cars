@@ -52,7 +52,6 @@ public class CustomerService {
         return this.repository.getCustomerByCustomerName(name);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Customer save(Customer customer) throws Exception {
 
         if (customer.getCustomerNumber() == null) {
@@ -67,7 +66,6 @@ public class CustomerService {
         return this.repository.save(customer);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void update(Customer customer) throws Exception {
 
         if (!existsById(customer.getCustomerNumber())) {
@@ -80,7 +78,6 @@ public class CustomerService {
         this.repository.save(customer);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteById(Integer id) throws Exception {
         if (!existsById(id)) {
             throw new Exception("Cannot find customer with id: " + id);
