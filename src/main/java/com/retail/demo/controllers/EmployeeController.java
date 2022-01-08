@@ -31,16 +31,16 @@ public class EmployeeController {
         return "/employee/employee-list";
     }
 
-    @GetMapping("/{id}")
-    public Employee getEmployee(@PathVariable Integer id) {
-        return this.employeeService.getById(id);
-    }
-
-    @GetMapping("/name")
-    public Employee getEmployee(@RequestParam String first,
-                                @RequestParam String last) {
-        return this.employeeService.getByName(first, last);
-    }
+  //  @GetMapping("/{id}")
+  //  public Employee getEmployee(@PathVariable Integer id) {
+  //      return this.employeeService.getById(id);
+  //  }
+//
+  //  @GetMapping("/name")
+  //  public Employee getEmployee(@RequestParam String first,
+  //                              @RequestParam String last) {
+  //      return this.employeeService.getByName(first, last);
+  //  }
 
     @GetMapping("/all-sellers")
     public String getSellers(Model model) {
@@ -54,13 +54,26 @@ public class EmployeeController {
     }
 
     @GetMapping("/all-vps")
-    public List<Employee> getVPs() {
-        return this.employeeService.getVPs();
+    public String getVPs(Model model) {
+        List<Employee> employees = this.employeeService.getVPs();
+        String title = "All VPs";
+
+        model.addAttribute("title", title);
+        model.addAttribute("employees", employees);
+
+        return "/employee/employee-list";
     }
 
     @GetMapping("/all-managers")
-    public List<Employee> getManager() {
-        return this.employeeService.getManagers();
+    public String getManagers(Model model) {
+        List<Employee> employees = this.employeeService.getManagers();
+        String title = "All Managers";
+
+        model.addAttribute("title", title);
+        model.addAttribute("employees", employees);
+
+        return "/employee/employee-list";
+
     }
 
     @GetMapping("/top-ten")
