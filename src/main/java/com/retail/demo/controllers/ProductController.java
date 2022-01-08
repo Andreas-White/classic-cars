@@ -1,13 +1,16 @@
 package com.retail.demo.controllers;
 
+import com.retail.demo.models.Customer;
 import com.retail.demo.models.Product;
 import com.retail.demo.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/product")
 public class ProductController {
 
@@ -19,8 +22,13 @@ public class ProductController {
     }
 
     @GetMapping("/list-all")
-    public List<Product> getProducts() {
-        return this.productService.getAllProducts();
+    public String getProducts(Model model) {
+        List<Product> products = this.productService.getAllProducts();
+        String title = "All Products";
+
+        model.addAttribute("products", products);
+        model.addAttribute("title", title);
+        return "/product/product-list";
     }
 
     @GetMapping("/top-ten")
