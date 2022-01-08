@@ -125,14 +125,14 @@ public class EmployeeController {
     }
 
 
-   // @PostMapping("/add-employee")
-   // public String addEmployee(Model model) {
-   //     Employee employee = new Employee();
-   //     model.addAttribute("add", true);
-   //     model.addAttribute("employee", employee);
-//
-   //     return "employee/update";
-   // }
+     @GetMapping("/add-employee")
+     public String getAddEmployee(Model model) {
+         Employee employee = new Employee();
+         model.addAttribute("add", true);
+         model.addAttribute("employee", employee);
+
+         return "employee/update";
+     }
 
     @PostMapping("/add-employee")
     public String processAddEmployee(Model model,
@@ -197,7 +197,7 @@ public class EmployeeController {
     public String deleteEmployee(Model model,
                                 @PathVariable Integer id) {
         try {
-            employeeService.getById(id);
+            employeeService.deleteById(id);
             return "redirect:/employee/list-all";
         } catch (Exception ex) {
             String errorMessage = ex.getMessage();

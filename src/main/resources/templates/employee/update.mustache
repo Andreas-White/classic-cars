@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>{{#add}}Create new Employee:{{/add}}{{^add}}Edit Employee:{{/add}}</h1>
-<a href="/employee/list-all">Back to Product List</a>
+<a href="/employee/list-all">Back to Employee List</a>
 <br/><br/>
 {{#employee}}
     <form action="{{#add}}/employee/add-employee{{/add}}{{^add}}/employee/update-employee/{{id}}{{/add}}" name="employee" method="POST">
@@ -20,27 +20,27 @@
                 </tr>
             {{/employeeNumber}}
             <tr>
-                <td>Product Name</td>
+                <td>Last Name</td>
                 <td>:</td>
                 <td><input type="text" name="lastName" value="{{#lastName}}{{lastName}}{{/lastName}}" /></td>
             </tr>
             <tr>
-                <td>Product Line</td>
+                <td>First Name</td>
                 <td>:</td>
                 <td><input type="text" name="firstName" value="{{#firstName}}{{firstName}}{{/firstName}}" /></td>
             </tr>
             <tr>
-                <td>Product Vendor</td>
+                <td>Email</td>
                 <td>:</td>
                 <td><input type="text" name="email" value="{{#email}}{{email}}{{/email}}" /></td>
             </tr>
             <tr>
-                <td>Product Description</td>
+                <td>Office Code</td>
                 <td>:</td>
-                <td><input type="text" name="productDescription" value="{{#officeCode}}{{officeCode}}{{/officeCode}}" /></td>
+                <td><input type="text" name="officeCode" value="{{#officeCode}}{{officeCode}}{{/officeCode}}" /></td>
             </tr>
             <tr>
-                <td>Quantity In Stock</td>
+                <td>Job Title</td>
                 <td>:</td>
                 <td><input type="text" name="jobTitle" value="{{#jobTitle}}{{jobTitle}}{{/jobTitle}}" /></td>
             </tr>
