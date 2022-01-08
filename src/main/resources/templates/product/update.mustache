@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{{#add}}Create new Product{{/add}}{{^add}}Edit Product{{/add}}</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>{{#add}}Create new Product:{{/add}}{{^add}}Edit Product:{{/add}}</h1>
+<a href="/product/list-all">Back to Product List</a>
+<br/><br/>
+{{#product}}
+    <form action="{{#add}}/product/add-product{{/add}}{{^add}}/product/update-product/{{id}}{{/add}}" name="product" method="POST">
+        <table border="0">
+            {{#productCode}}
+                <tr>
+                    <td>ID</td>
+                    <td>:</td>
+                    <td>{{productCode}}</td>
+                </tr>
+            {{/productCode}}
+            <tr>
+                <td>Product Name</td>
+                <td>:</td>
+                <td><input type="text" name="productName" value="{{#productName}}{{productName}}{{/productName}}" /></td>
+            </tr>
+            <tr>
+                <td>Product Line</td>
+                <td>:</td>
+                <td><input type="text" name="productLine" value="{{#productLine}}{{productLine}}{{/productLine}}" /></td>
+            </tr>
+            <tr>
+                <td>Product Vendor</td>
+                <td>:</td>
+                <td><input type="text" name="productVendor" value="{{#productVendor}}{{productVendor}}{{/productVendor}}" /></td>
+            </tr>
+            <tr>
+                <td>Product Description</td>
+                <td>:</td>
+                <td><input type="text" name="productDescription" value="{{#productDescription}}{{productDescription}}{{/productDescription}}" /></td>
+            </tr>
+            <tr>
+                <td>Quantity In Stock</td>
+                <td>:</td>
+                <td><input type="text" name="quantityInStock" value="{{#quantityInStock}}{{quantityInStock}}{{/quantityInStock}}" /></td>
+            </tr>
+            <tr>
+                <td>Buy Price</td>
+                <td>:</td>
+                <td><input type="text" name="buyPrice" value="{{#buyPrice}}{{buyPrice}}{{/buyPrice}}" /></td>
+            </tr>
+        </table>
+        <input type="submit" value="{{#add}}Create{{/add}}{{^add}}Update{{/add}}" />
+    </form>
+{{/product}}
+
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div class="error">{{#errorMessage}}{{errorMessage}}{{/errorMessage}}</div>
+{{>footer}}
+</body>
+</html>

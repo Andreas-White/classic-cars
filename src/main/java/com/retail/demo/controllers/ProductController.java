@@ -1,13 +1,16 @@
 package com.retail.demo.controllers;
 
+import com.retail.demo.models.Customer;
 import com.retail.demo.models.Product;
 import com.retail.demo.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/product")
 public class ProductController {
 
@@ -19,49 +22,141 @@ public class ProductController {
     }
 
     @GetMapping("/list-all")
-    public List<Product> getProducts() {
-        return this.productService.getAllProducts();
+    public String getProducts(Model model) {
+        List<Product> products = this.productService.getAllProducts();
+        String title = "All Products";
+
+        model.addAttribute("products", products);
+        model.addAttribute("title", title);
+        return "/product/product-list";
     }
 
     @GetMapping("/top-ten")
-    public List<Product> getTopProducts() {
-        return this.productService.getTopTenProducts();
-    }
+    public String getTopTen(Model model) {
+        List<Product> products = this.productService.getTopTenProducts();
+        String title = "All Products";
 
+        model.addAttribute("products", products);
+        model.addAttribute("title", title);
+        return "/product/product-list";
+    }
     @GetMapping("/bottom-ten")
-    public List<Product> getBottomProducts() {
-        return this.productService.getBottomTenProducts();
-    }
+    public String getBottomTen(Model model) {
+        List<Product> products = this.productService.getBottomTenProducts();
+        String title = "All Products";
 
+        model.addAttribute("products", products);
+        model.addAttribute("title", title);
+        return "/product/product-list";
+    }
     @GetMapping("/{id}")
-    public Product getProduct(@PathVariable String id) {
-        return this.productService.getProductById(id);
+    public String getProductById(Model model,
+                                  @PathVariable String id) {
+        Product product = null;
+        try {
+            product  = productService.getProductById(id);
+            model.addAttribute("allowDelete", false);
+        } catch (Exception ex) {
+            model.addAttribute("errorMessage", "No customer found with that ID");
+        }
+        model.addAttribute("product", product);
+        return "/product/product";
+    }
+    @GetMapping("/add-product")
+    public String getAddProduct(Model model) {
+        Product product = new Product();
+        model.addAttribute("add", true);
+        model.addAttribute("product", product);
+
+        return "product/update";
     }
 
     @PostMapping("/add-product")
-    public void addProduct(@RequestBody Product product) {
+    public String processAddProduct(Model model,
+                                     @ModelAttribute("product") Product product) {
         try {
-            this.productService.save(product);
-        } catch (Exception e) {
-            e.printStackTrace();
+            Product newProduct = productService.save(product);
+            return "redirect:/product/" + newProduct.getProductCode();
+        } catch (Exception ex) {
+            String errorMessage = ex.getMessage();
+            model.addAttribute("errorMessage", errorMessage);
+
+            model.addAttribute("add", true);
+            return "/product/update";
         }
     }
 
-    @PutMapping("/update-product")
-    public void updateProduct(@RequestBody Product product) {
+    @GetMapping("/update-product/{id}")
+    public String getUpdateProduct(Model model, @PathVariable String id) {
+        Product product = null;
         try {
-            this.productService.update(product);
-        } catch (Exception e) {
-            e.printStackTrace();
+            product = productService.getProductById(id);
+        } catch (Exception ex) {
+            model.addAttribute("errorMessage", ex.getMessage());
+        }
+        model.addAttribute("add", false);
+        model.addAttribute("product", product);
+        return "/product/update";
+    }
+
+    @PostMapping("/update-product/{id}")
+    public String processUpdateProduct(Model model,
+                                        @PathVariable String id,
+                                        @ModelAttribute("customer") Product product) {
+        try {
+            product.setProductCode(id);
+            productService.update(product);
+            return "redirect:/product/" + product.getProductCode();
+        } catch (Exception ex) {
+            String errorMessage = ex.getMessage();
+            model.addAttribute("errorMessage", errorMessage);
+
+            model.addAttribute("add", false);
+            return "/product/update";
         }
     }
 
-    @DeleteMapping("/delete-product/{id}")
-    public void deleteProduct(@PathVariable String id) {
+    @GetMapping("/delete-product/{id}")
+    public String getDeleteProduct(Model model,
+                                    @PathVariable String id) {
+        Product product = null;
         try {
-            this.productService.deleteById(id);
-        } catch (Exception e) {
-            e.printStackTrace();
+            product = productService.getProductById(id);
+        } catch (Exception ex) {
+            model.addAttribute("errorMessage", ex.getMessage());
+        }
+        model.addAttribute("allowDelete", true);
+        model.addAttribute("product", product);
+        return "/product/product";
+    }
+
+    @PostMapping("/delete-product/{id}")
+    public String deleteProduct(Model model,
+                                 @PathVariable String id) {
+        try {
+            productService.deleteById(id);
+            return "redirect:/product/list-all";
+        } catch (Exception ex) {
+            String errorMessage = ex.getMessage();
+            model.addAttribute("errorMessage", errorMessage);
+            return "/product/product";
         }
     }
+ // @PutMapping("/update-product")
+ // public void updateProduct(@RequestBody Product product) {
+ //     try {
+ //         this.productService.update(product);
+ //     } catch (Exception e) {
+ //         e.printStackTrace();
+ //     }
+ // }
+
+ // @DeleteMapping("/delete-product/{id}")
+ // public void deleteProduct(@PathVariable String id) {
+ //     try {
+ //         this.productService.deleteById(id);
+ //     } catch (Exception e) {
+ //         e.printStackTrace();
+ //     }
+ // }
 }

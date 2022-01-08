@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>User Details</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>View Product</h1>
+<a href="/product/list-all">Back to Product List</a>
+<br/><br/>
+{{#product}}
+    <table border="0">
+        <tr>
+            <td>Product Name</td>
+            <td>:</td>
+            <td>{{productName}}</td>
+        </tr>
+        <tr>
+            <td>Product Line</td>
+            <td>:</td>
+            <td>{{productLine}}</td>
+        </tr>
+        <tr>
+            <td>Product Vendor</td>
+            <td>:</td>
+            <td>{{productVendor}}</td>
+        </tr>
+        <tr>
+            <td>Product Description</td>
+            <td>:</td>
+            <td>{{productDescription}}</td>
+        </tr>
+        <tr>
+            <td>Quantity in Stock</td>
+            <td>:</td>
+            <td>{{quantityInStock}}</td>
+        </tr>
+        <tr>
+            <td>Buy Price</td>
+            <td>:</td>
+            <td>{{buyPrice}}</td>
+        </tr>
+
+    </table>
+    <br/><br/>
+    {{#allowDelete}}
+        <form action="/product/delete-product/{{productCode}}" method="POST">
+            Delete this user? <input type="submit" value="Yes" />
+        </form>
+    {{/allowDelete}}
+    {{^allowDelete}}
+        <div>
+            <a href="/product/update-product/{{productCode}}">Edit</a> |
+            <a href="/product/delete-product/{{productCode}}">Delete</a>
+        </div>
+    {{/allowDelete}}
+{{/product}}
+{{#errorMessage}}
+    <div class="error">{{errorMessage}}</div>
+{{/errorMessage}}
+{{>footer}}
+</body>
+</html>
