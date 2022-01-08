@@ -32,20 +32,36 @@ public class ProductController {
     }
 
     @GetMapping("/top-ten")
-    public List<Product> getTopProducts() {
-        return this.productService.getTopTenProducts();
-    }
+    public String getTopTen(Model model) {
+        List<Product> products = this.productService.getTopTenProducts();
+        String title = "All Products";
 
+        model.addAttribute("products", products);
+        model.addAttribute("title", title);
+        return "/product/product-list";
+    }
     @GetMapping("/bottom-ten")
-    public List<Product> getBottomProducts() {
-        return this.productService.getBottomTenProducts();
-    }
+    public String getBottomTen(Model model) {
+        List<Product> products = this.productService.getBottomTenProducts();
+        String title = "All Products";
 
+        model.addAttribute("products", products);
+        model.addAttribute("title", title);
+        return "/product/product-list";
+    }
     @GetMapping("/{id}")
-    public Product getProduct(@PathVariable String id) {
-        return this.productService.getProductById(id);
+    public String getProductById(Model model,
+                                  @PathVariable String id) {
+        Product product = null;
+        try {
+            product  = productService.getProductById(id);
+            model.addAttribute("allowDelete", false);
+        } catch (Exception ex) {
+            model.addAttribute("errorMessage", "No customer found with that ID");
+        }
+        model.addAttribute("product", product);
+        return "/product/product";
     }
-
     @PostMapping("/add-product")
     public void addProduct(@RequestBody Product product) {
         try {
