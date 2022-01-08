@@ -1,8 +1,6 @@
 package com.retail.demo.controllers;
 
-import com.retail.demo.models.Employee;
 import com.retail.demo.models.Office;
-import com.retail.demo.models.Product;
 import com.retail.demo.services.OfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -86,7 +84,7 @@ public class OfficeController {
     }
 
     @GetMapping("/update-office/{id}")
-    public String getUpdateProduct(Model model, @PathVariable Integer id) {
+    public String getUpdateOffice(Model model, @PathVariable Integer id) {
         Office office = null;
         try {
             office = officeService.findById(id);
@@ -98,8 +96,8 @@ public class OfficeController {
         return "/office/update";
     }
 
-    @PutMapping("/update-office/{id}")
-    public String updateOffice(Model model,
+    @PostMapping("/update-office/{id}")
+    public String processUpdateOffice(Model model,
                                @PathVariable Integer id,
                                @ModelAttribute("office") Office office) {
         try {

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Office List</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>{{title}}</h1>
+
+<div>
+    <nobr>
+        <a href="/office/add-office">Add Office</a> |
+        <a href="/">Home</a>
+    </nobr>
+</div>
+<br/><br/>
+<div>
+    <table border="2">
+        <tr>
+            <th>City</th>
+            <th>Phone</th>
+            <th>Address Line</th>
+            <th>Country</th>
+            <th>Postal Code</th>
+            <th>Edit</th>
+        </tr>
+        {{#offices}}
+            <tr>
+                <td><a href="/office/{{officeCode}}">{{city}}</a></td>
+                <td>{{phone}}</td>
+                <td>{{addressLine}}</td>
+                <td>{{country}}</td>
+                <td>{{postalCode}}</td>
+                <td><a href="/office/{{officeCode}}">Edit</a></td>
+            </tr>
+        {{/offices}}
+    </table>
+</div>
+<br/><br/>
+{{>footer}}
+</body>
+</html>

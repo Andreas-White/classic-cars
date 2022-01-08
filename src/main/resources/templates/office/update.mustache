@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{{#add}}Create new Office{{/add}}{{^add}}Edit Office{{/add}}</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>{{#add}}Create new Office:{{/add}}{{^add}}Edit Office:{{/add}}</h1>
+<a href="/office/list-all">Back to Office List</a>
+<br/><br/>
+{{#office}}
+    <form action="{{#add}}/office/add-office{{/add}}{{^add}}/office/update-office/{{id}}{{/add}}" name="office" method="POST">
+        <table border="0">
+            {{#officeCode}}
+                <tr>
+                    <td>ID</td>
+                    <td>:</td>
+                    <td>{{officeCode}}</td>
+                </tr>
+            {{/officeCode}}
+            <tr>
+                <td>City</td>
+                <td>:</td>
+                <td><input type="text" name="city" value="{{#city}}{{city}}{{/city}}" /></td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td>:</td>
+                <td><input type="text" name="phone" value="{{#phone}}{{phone}}{{/phone}}" /></td>
+            </tr>
+            <tr>
+                <td>Address Line</td>
+                <td>:</td>
+                <td><input type="text" name="addressLine" value="{{#addressLine}}{{addressLine}}{{/addressLine}}" /></td>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td>:</td>
+                <td><input type="text" name="country" value="{{#country}}{{country}}{{/country}}" /></td>
+            </tr>
+            <tr>
+                <td>Postal Code</td>
+                <td>:</td>
+                <td><input type="text" name="postalCode" value="{{#postalCode}}{{postalCode}}{{/postalCode}}" /></td>
+            </tr>
+        </table>
+        <input type="submit" value="{{#add}}Create{{/add}}{{^add}}Update{{/add}}" />
+    </form>
+{{/office}}
+
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div class="error">{{#errorMessage}}{{errorMessage}}{{/errorMessage}}</div>
+{{>footer}}
+</body>
+</html>
