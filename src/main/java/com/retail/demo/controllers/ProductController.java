@@ -62,14 +62,30 @@ public class ProductController {
         model.addAttribute("product", product);
         return "/product/product";
     }
+    @GetMapping("/add-product")
+    public String getAddProduct(Model model) {
+        Product product = new Product();
+        model.addAttribute("add", true);
+        model.addAttribute("product", product);
+
+        return "product/update";
+    }
+
     @PostMapping("/add-product")
-    public void addProduct(@RequestBody Product product) {
+    public String processAddProduct(Model model,
+                                     @ModelAttribute("product") Product product) {
         try {
-            this.productService.save(product);
-        } catch (Exception e) {
-            e.printStackTrace();
+            Product newProduct = productService.save(product);
+            return "redirect:/product/" + newProduct.getProductCode();
+        } catch (Exception ex) {
+            String errorMessage = ex.getMessage();
+            model.addAttribute("errorMessage", errorMessage);
+
+            model.addAttribute("add", true);
+            return "/product/update";
         }
     }
+
 
     @PutMapping("/update-product")
     public void updateProduct(@RequestBody Product product) {

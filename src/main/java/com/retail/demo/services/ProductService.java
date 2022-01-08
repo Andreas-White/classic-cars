@@ -36,7 +36,7 @@ public class ProductService {
         return new ArrayList<>(repository.getBottomTenProducts());
     }
 
-    public void save(Product product) throws Exception {
+    public Product save(Product product) throws Exception {
 
         if (product.getProductCode() == null) {
             String id = this.repository.getMaxId();
@@ -48,7 +48,8 @@ public class ProductService {
         if (existsById(product.getProductCode())) {
             throw new Exception("Payment: " + product.getProductName() + " already exists");
         }
-        this.repository.save(product);
+
+        return this.repository.save(product);
     }
 
     public void update(Product product) throws Exception {
