@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{{#add}}Create new Employee{{/add}}{{^add}}Edit Employee{{/add}}</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>{{#add}}Create new Employee:{{/add}}{{^add}}Edit Employee:{{/add}}</h1>
+<a href="/employee/list-all">Back to Product List</a>
+<br/><br/>
+{{#employee}}
+    <form action="{{#add}}/employee/add-employee{{/add}}{{^add}}/employee/update-employee/{{id}}{{/add}}" name="employee" method="POST">
+        <table border="0">
+            {{#employeeNumber}}
+                <tr>
+                    <td>ID</td>
+                    <td>:</td>
+                    <td>{{employeeNumber}}</td>
+                </tr>
+            {{/employeeNumber}}
+            <tr>
+                <td>Product Name</td>
+                <td>:</td>
+                <td><input type="text" name="lastName" value="{{#lastName}}{{lastName}}{{/lastName}}" /></td>
+            </tr>
+            <tr>
+                <td>Product Line</td>
+                <td>:</td>
+                <td><input type="text" name="firstName" value="{{#firstName}}{{firstName}}{{/firstName}}" /></td>
+            </tr>
+            <tr>
+                <td>Product Vendor</td>
+                <td>:</td>
+                <td><input type="text" name="email" value="{{#email}}{{email}}{{/email}}" /></td>
+            </tr>
+            <tr>
+                <td>Product Description</td>
+                <td>:</td>
+                <td><input type="text" name="productDescription" value="{{#officeCode}}{{officeCode}}{{/officeCode}}" /></td>
+            </tr>
+            <tr>
+                <td>Quantity In Stock</td>
+                <td>:</td>
+                <td><input type="text" name="jobTitle" value="{{#jobTitle}}{{jobTitle}}{{/jobTitle}}" /></td>
+            </tr>
+        </table>
+        <input type="submit" value="{{#add}}Create{{/add}}{{^add}}Update{{/add}}" />
+    </form>
+{{/employee}}
+
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div class="error">{{#errorMessage}}{{errorMessage}}{{/errorMessage}}</div>
+{{>footer}}
+</body>
+</html>

@@ -102,7 +102,7 @@ public class ProductController {
     @PostMapping("/update-product/{id}")
     public String processUpdateProduct(Model model,
                                         @PathVariable String id,
-                                        @ModelAttribute("customer") Product product) {
+                                        @ModelAttribute("product") Product product) {
         try {
             product.setProductCode(id);
             productService.update(product);
