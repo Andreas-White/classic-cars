@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>User List</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>{{title}}</h1>
+
+<div>
+    <nobr>
+        <a href="/product/add-product">Add Product</a> |
+        <a href="/">Home</a>
+    </nobr>
+</div>
+<br/><br/>
+<div>
+    <table border="2">
+        <tr>
+            <th>Product Name</th>
+            <th>Product Line</th>
+            <th>Product Vendor</th>
+            <th>Product Description</th>
+            <th>Quantity in Stock</th>
+            <th>Buy Price</th>
+            <th>Edit</th>
+        </tr>
+        {{#products}}
+            <tr>
+                <td><a href="/product/{{productCode}}">{{productName}}</a></td>
+                <td>{{productLine}}</td>
+                <td>{{productVendor}}</td>
+                <td>{{productDescription}}</td>
+                <td>{{quantityInStock}}</td>
+                <td>{{buyPrice}}</td>
+                <td><a href="/product/{{productCode}}">Edit</a></td>
+            </tr>
+        {{/products}}
+    </table>
+</div>
+<br/><br/>
+{{>footer}}
+</body>
+</html>
