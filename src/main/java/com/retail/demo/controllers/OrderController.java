@@ -1,6 +1,6 @@
 package com.retail.demo.controllers;
 
-import com.retail.demo.models.Office;
+
 import com.retail.demo.models.Order;
 import com.retail.demo.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class OrderController {
 
         model.addAttribute("orders", orders);
         model.addAttribute("title", title);
-        return "/Order/Order-list";
+        return "/order/order-list";
     }
 
     @GetMapping("/{id}")
@@ -44,30 +44,75 @@ public class OrderController {
         return "/order/order";
     }
 
+    @GetMapping("/add-order")
+    public String getAddOrder(Model model) {
+        Order order = new Order();
+        model.addAttribute("add", true);
+        model.addAttribute("order", order);
+
+        return "order/update";
+    }
+
     @PostMapping("/add-order")
-    public void addCustomer(@RequestBody Order order) {
+    public String addOrder(Model model,@ModelAttribute("order") Order order) {
         try {
-            this.orderService.save(order);
-        } catch (Exception e) {
-            e.printStackTrace();
+            Order newOrder = orderService.save(order);
+            return "redirect:/order/" + newOrder.getOrderNumber();
+        } catch (Exception ex) {
+            String errorMessage = ex.getMessage();
+            model.addAttribute("errorMessage", errorMessage);
+
+            model.addAttribute("add", true);
+            return "/order/update";
         }
     }
 
-    @PutMapping("/update-order")
-    public void updateCustomer(@RequestBody Order order) {
+    @GetMapping("/update-order/{id}")
+    public String getUpdateOrder(Model model, @PathVariable Integer id) {
+        Order order = null;
         try {
-            this.orderService.update(order);
-        } catch (Exception e) {
-            e.printStackTrace();
+            order = orderService.findById(id);
+        } catch (Exception ex) {
+            model.addAttribute("errorMessage", ex.getMessage());
+        }
+        model.addAttribute("add", false);
+        model.addAttribute("order", order);
+        return "/order/update";
+    }
+
+    @PostMapping("/update-order/{id}")
+    public String processUpdateOrder(Model model,
+                                      @PathVariable Integer id,
+                                      @ModelAttribute("order") Order order) {
+        try {
+            order.setOrderNumber(id);
+            orderService.update(order);
+            return "redirect:/order/" + order.getOrderNumber();
+        } catch (Exception ex) {
+            String errorMessage = ex.getMessage();
+            model.addAttribute("errorMessage", errorMessage);
+
+            model.addAttribute("add", false);
+            return "/order/update";
         }
     }
 
-    @DeleteMapping("/delete-order/{id}")
-    public void deleteCustomer(@PathVariable Integer id) {
-        try {
-            this.orderService.deleteById(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
+   // @PutMapping("/update-order")
+   // public void updateCustomer(@RequestBody Order order) {
+   //     try {
+   //         this.orderService.update(order);
+   //     } catch (Exception e) {
+   //         e.printStackTrace();
+   //     }
+   // }
+//
+   // @DeleteMapping("/delete-order/{id}")
+   // public void deleteCustomer(@PathVariable Integer id) {
+   //     try {
+   //         this.orderService.deleteById(id);
+   //     } catch (Exception e) {
+   //         e.printStackTrace();
+   //     }
+   // }
 }

@@ -31,7 +31,7 @@ public class OrderService {
         return repository.findById(id).orElse(null);
     }
 
-    public void save(Order order) throws Exception {
+    public Order save(Order order) throws Exception {
 
         if (order.getOrderNumber() == null) {
             Integer id = repository.getMaxId() + 3;
@@ -41,7 +41,7 @@ public class OrderService {
         if (existsById(order.getOrderNumber())) {
             throw new Exception("Order already exists");
         }
-        repository.save(order);
+        return repository.save(order);
     }
 
     public void update(Order order) throws Exception {
