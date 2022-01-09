@@ -44,7 +44,7 @@ public class OfficeController {
         return "/office/office";
     }
 
-    @GetMapping("/city")
+    @GetMapping("/city")  ///////////
     public Office getAllOffices(@RequestParam String city) {
         return this.officeService.findByCity(city);
     }

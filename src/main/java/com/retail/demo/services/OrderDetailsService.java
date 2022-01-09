@@ -59,7 +59,7 @@ public class OrderDetailsService {
         return this.repository.existsDistinctByOrderNumberAndProductCode(number, code);
     }
 
-    public void save(OrderDetails orderDetails) throws Exception {
+    public OrderDetails save(OrderDetails orderDetails) throws Exception {
 
         if (orderDetails.getOrderNumber() == null) {
             throw new Exception("no order number was provided");
@@ -83,6 +83,8 @@ public class OrderDetailsService {
 
         this.repository.insertOrderDetails(orderDetails.getOrderNumber(), orderDetails.getProductCode(),
                 orderDetails.getQuantityOrdered(), orderDetails.getPriceEach(), orderDetails.getOrderLineNumber());
+
+        return this.repository.save(orderDetails);
     }
 
     public void update(OrderDetails orderDetails) throws Exception {

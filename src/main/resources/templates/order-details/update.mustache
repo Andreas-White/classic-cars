@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{{#add}}Create new Order Details{{/add}}{{^add}}Edit Order Details{{/add}}</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>{{#add}}Create new Order Details:{{/add}}{{^add}}Edit Order Details:{{/add}}</h1>
+<a href="/order-details/list-all">Back to Order Details List</a>
+<br/><br/>
+{{#orderDetails}}
+    <form action="{{#add}}/order-details/add-order-details{{/add}}{{^add}}/order-details/update-order-details/{{id}}{{/add}}" name="orderDetails" method="POST">
+        <table border="0">
+            {{#orderNumber}}
+                <tr>
+                    <td>ID</td>
+                    <td>:</td>
+                    <td>{{orderNumber}}</td>
+                </tr>
+            {{/orderNumber}}
+            <tr>
+                <td>Product Code</td>
+                <td>:</td>
+                <td><input type="text" name="productCode" value="{{#productCode}}{{productCode}}{{/productCode}}" /></td>
+            </tr>
+            <tr>
+                <td>Quantity Ordered</td>
+                <td>:</td>
+                <td><input type="text" name="quantityOrdered" value="{{#quantityOrdered}}{{quantityOrdered}}{{/quantityOrdered}}" /></td>
+            </tr>
+            <tr>
+                <td>Price Each</td>
+                <td>:</td>
+                <td><input type="text" name="priceEach" value="{{#priceEach}}{{priceEach}}{{/priceEach}}" /></td>
+            </tr>
+            <tr>
+                <td>OrderLine Number</td>
+                <td>:</td>
+                <td><input type="text" name="orderLineNumber" value="{{#orderLineNumber}}{{orderLineNumber}}{{/orderLineNumber}}" /></td>
+            </tr>
+
+        </table>
+        <input type="submit" value="{{#add}}Create{{/add}}{{^add}}Update{{/add}}" />
+    </form>
+{{/orderDetails}}
+
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div class="error">{{#errorMessage}}{{errorMessage}}{{/errorMessage}}</div>
+{{>footer}}
+</body>
+</html>
