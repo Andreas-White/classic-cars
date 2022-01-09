@@ -1,6 +1,5 @@
 package com.retail.demo.controllers;
 
-import com.retail.demo.models.Office;
 import com.retail.demo.models.Payment;
 import com.retail.demo.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,7 +96,7 @@ public class PaymentController {
     }
 
     @GetMapping("/delete-payment/{id}")
-    public String getDeleteOffice(Model model,
+    public String getDeletePayment(Model model,
                                   @PathVariable String id) {
         Payment payment = null;
         try {
@@ -111,7 +110,7 @@ public class PaymentController {
     }
 
     @PostMapping("/delete-payment/{id}")
-    public String deleteOffice(Model model,
+    public String deletePayment(Model model,
                                @PathVariable String id) {
         try {
             service.deleteById(id);

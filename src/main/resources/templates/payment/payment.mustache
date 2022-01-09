@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Payment</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>View Payments</h1>
+<a href="/payment/list-all">Back to Payments List</a>
+<br/><br/>
+{{#payment}}
+    <table border="0">
+        <tr>
+            <td>Customer Number</td>
+            <td>:</td>
+            <td>{{customerNumber}}</td>
+        </tr>
+        <tr>
+            <td>Payment Date</td>
+            <td>:</td>
+            <td>{{paymentDate}}</td>
+        </tr>
+        <tr>
+            <td>Amount</td>
+            <td>:</td>
+            <td>{{amount}}</td>
+        </tr>
+
+    </table>
+    <br/><br/>
+    {{#allowDelete}}
+        <form action="/payment/delete-payment/{{checkNumber}}" method="POST">
+            Delete this payment? <input type="submit" value="Yes" />
+        </form>
+    {{/allowDelete}}
+    {{^allowDelete}}
+        <div>
+            <a href="/payment/update-payment/{{checkNumber}}">Edit</a> |
+            <a href="/payment/delete-payment/{{checkNumber}}">Delete</a>
+        </div>
+    {{/allowDelete}}
+{{/payment}}
+{{#errorMessage}}
+    <div class="error">{{errorMessage}}</div>
+{{/errorMessage}}
+{{>footer}}
+</body>
+</html>
