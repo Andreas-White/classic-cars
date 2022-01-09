@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Product Lines</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>View Product Lines</h1>
+<a href="/product-line/list-all">Back to Product Lines List</a>
+<br/><br/>
+{{#productLine}}
+    <table border="0">
+        <tr>
+            <td>Product Line</td>
+            <td>:</td>
+            <td>{{productLine}}</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>:</td>
+            <td>{{textDescription}}</td>
+        </tr>
+    </table>
+    <br/><br/>
+    {{#allowDelete}}
+        <form action="/product-line/delete-product-line/{{productLine}}" method="POST">
+            Delete this Product Line? <input type="submit" value="Yes" />
+        </form>
+    {{/allowDelete}}
+    {{^allowDelete}}
+        <div>
+            <a href="/product-line/update-product-line/{{productLine}}">Edit</a> |
+            <a href="/product-line/delete-product-line/{{productLine}}">Delete</a>
+        </div>
+    {{/allowDelete}}
+{{/productLine}}
+{{#errorMessage}}
+    <div class="error">{{errorMessage}}</div>
+{{/errorMessage}}
+{{>footer}}
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Product Lines List</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>{{title}}</h1>
+
+<div>
+    <nobr>
+        <a href="/product-line/add-product-line">Add Product Line</a> |
+        <a href="/">Home</a>
+    </nobr>
+</div>
+<br/><br/>
+<div>
+    <table border="2">
+
+        <tr>
+            <th>Product Line</th>
+            <th>Description</th>
+            <th>Edit</th>
+        </tr>
+        {{#productLines}}
+            <tr>
+                <td><a href="/product-line/{{productLine}}">{{productLine}}</a></td>
+                <td> {{textDescription}}</td>
+
+                <td><a href="/product-line/{{productLine}}">Edit</a></td>
+            </tr>
+        {{/productLines}}
+    </table>
+</div>
+<br/><br/>
+{{>footer}}
+</body>
+</html>

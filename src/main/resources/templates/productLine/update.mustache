@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{{#add}}Create new Product Line{{/add}}{{^add}}Edit Product Line{{/add}}</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>{{#add}}Create new Product Line:{{/add}}{{^add}}Edit Product Line:{{/add}}</h1>
+<a href="/product-line/list-all">Back to Product Line List</a>
+<br/><br/>
+{{#productLine}}
+    <form action="{{#add}}/product-line/add-product-line{{/add}}{{^add}}/product-line/update-product-line/{{id}}{{/add}}"
+          name="product-line" method="POST">
+        <table border="0">
+            {{#add}}
+                <tr>
+
+                    <td>Product Line</td>
+                    <td>:</td>
+                    <td><input type="text" name="productLine" value="{{#productLine}}{{productLine}}{{/productLine}}"/>
+                </tr>
+            {{/add}}
+            <tr>
+                <td>Description</td>
+                <td>:</td>
+                <td><input type="text" name="textDescription"
+                           value="{{#textDescription}}{{textDescription}}{{/textDescription}}"/>
+                </td>
+            </tr>
+
+        </table>
+        <input type="submit" value="{{#add}}Create{{/add}}{{^add}}Update{{/add}}"/>
+    </form>
+{{/productLine}}
+
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div class="error">{{#errorMessage}}{{errorMessage}}{{/errorMessage}}</div>
+{{>footer}}
+</body>
+</html>
