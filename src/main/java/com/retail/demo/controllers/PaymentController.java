@@ -1,6 +1,7 @@
 package com.retail.demo.controllers;
 
 import com.retail.demo.models.Payment;
+import com.retail.demo.models.PaymentDT;
 import com.retail.demo.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,7 +45,12 @@ public class PaymentController {
 
     @GetMapping("/add-payment")
     public String getAddPayment(Model model) {
+
         Payment payment = new Payment();
+
+      //  System.out.println(payment.getPaymentDate());
+      //  System.out.println(payment.getPaymentDate().getClass());
+
         model.addAttribute("add", true);
         model.addAttribute("payment", payment);
 
@@ -52,9 +58,17 @@ public class PaymentController {
     }
 
     @PostMapping("/add-payment")
-    public String addPayment(Model model,@ModelAttribute("payment") Payment payment) {
+    public String addPayment(Model model,@ModelAttribute("payment") PaymentDT paymentDT) {
         try {
-            Payment newPayment = service.save(payment);
+          // System.out.println(paymentDT.getPaymentDate());
+          // System.out.println(paymentDT.getPaymentDate().getClass());
+            Payment newPayment1 = new Payment();
+            newPayment1.setCheckNumber(paymentDT.getCheckNumber());
+            newPayment1.setPaymentDate(service.convert(paymentDT.getPaymentDate()));
+            newPayment1.setAmount(paymentDT.getAmount());
+            newPayment1.setCustomerNumber(paymentDT.getCustomerNumber());
+
+            Payment newPayment = service.save(newPayment1);
             return "redirect:/payment/" + newPayment.getCheckNumber();
         } catch (Exception ex) {
             String errorMessage = ex.getMessage();
@@ -81,11 +95,17 @@ public class PaymentController {
     @PostMapping("/update-payment/{id}")
     public String processUpdatePayment(Model model,
                                       @PathVariable String id,
-                                      @ModelAttribute("payment") Payment payment) {
+                                      @ModelAttribute("payment") PaymentDT paymentDT) {
         try {
-            payment.setCheckNumber(id);
-            service.update(payment);
-            return "redirect:/payment/" + payment.getCheckNumber();
+            Payment newPayment1 = new Payment();
+            newPayment1.setCheckNumber(id);
+            newPayment1.setPaymentDate(service.convert(paymentDT.getPaymentDate()));
+            newPayment1.setAmount(paymentDT.getAmount());
+            newPayment1.setCustomerNumber(paymentDT.getCustomerNumber());
+
+
+            service.update(newPayment1);
+            return "redirect:/payment/" + newPayment1.getCheckNumber();
         } catch (Exception ex) {
             String errorMessage = ex.getMessage();
             model.addAttribute("errorMessage", errorMessage);

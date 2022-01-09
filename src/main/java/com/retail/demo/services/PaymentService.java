@@ -3,8 +3,11 @@ package com.retail.demo.services;
 import com.retail.demo.models.Payment;
 import com.retail.demo.repositories.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +45,7 @@ public class PaymentService {
         if (existsById(payment.getCheckNumber())) {
             throw new Exception("Payment with id:" + payment.getCheckNumber() + " already exists");
         }
+        //String date = payment.getPaymentDate();
         return this.repository.save(payment);
     }
 
@@ -65,6 +69,17 @@ public class PaymentService {
             this.repository.deleteById(id);
         }
     }
+
+   // static LocalDate convert(String date) {
+   //   //  return LocalDate.parse(date, DateTimeFormat.forPattern("yyyy-MM-dd"));
+   //     DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+   //     LocalDate ld = LocalDate.parse(date, dateformatter);
+   //     return ld ;
+   // }
+   public LocalDate convert(String date) {
+       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+       return LocalDate.parse(date, formatter);
+   }
 
     public Long count() {
         return this.repository.count();

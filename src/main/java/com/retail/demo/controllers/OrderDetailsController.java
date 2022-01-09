@@ -34,10 +34,10 @@ public class OrderDetailsController {
 
     @GetMapping("/list-order-number/{number}")
     public String getOrderDetailsFromOrderNumber(Model model,
-                                                 @PathVariable Integer id) {
+                                                 @PathVariable Integer number) {
 
-        List<OrderDetails> orderDetails = this.service.getAllOrderDetailsByOrderNumber(id);
-        String title = "All OrderDetails from order: " + id;  ///////////////////////
+        List<OrderDetails> orderDetails = this.service.getAllOrderDetailsByOrderNumber(number);
+        String title = "All OrderDetails from order: " + number;  ///////////////////////
 
         model.addAttribute("title", title);
         model.addAttribute("orderDetails", orderDetails);
@@ -47,10 +47,10 @@ public class OrderDetailsController {
 
     @GetMapping("/list-product-code/{code}")
     public String getOrderDetailsFromProductCode(Model model,
-                                                             @PathVariable String id) {
+                                                             @PathVariable String code) {
 
-        List<OrderDetails> orderDetails = this.service.getAllOrderDetailsByProductCode(id);
-        String title = "All OrderDetails containing product with code: " + id;  ///////////////////////
+        List<OrderDetails> orderDetails = this.service.getAllOrderDetailsByProductCode(code);
+        String title = "All OrderDetails containing product with code: " + code;  ///////////////////////
 
         model.addAttribute("title", title);
         model.addAttribute("orderDetails", orderDetails);
@@ -58,7 +58,7 @@ public class OrderDetailsController {
         return "/orderDetails/orderDetails-list";
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{number}/{code}")
     public String getOrderDetailsById(Model model,@PathVariable Integer number,@PathVariable String code) {
         OrderDetails orderDetails = null;
         try {
@@ -95,7 +95,7 @@ public class OrderDetailsController {
         }
     }
 
-    @GetMapping("/update-order-details/{id}")
+    @GetMapping("/update-order-details/{number}/{code}")
     public String getUpdateOrderDetails(Model model, @PathVariable Integer number,
                                               @PathVariable String code ) {
         OrderDetails orderDetails = null;
@@ -109,13 +109,14 @@ public class OrderDetailsController {
         return "/orderDetails/update";
     }
 
-    @PostMapping("/update-order-details/{id}")
+    @PostMapping("/update-order-details/{number}/{code}")
     public String processUpdateOrderDetails(Model model,
                                       @PathVariable Integer number,
                                       @PathVariable String code ,
                                       @ModelAttribute("orderDetails") OrderDetails orderDetails) {
         try {
             orderDetails.setOrderNumber(number);
+            orderDetails.setProductCode(code);
             service.update(orderDetails);
             return "redirect:/orderDetails/" + orderDetails.getOrderNumber();
         } catch (Exception ex) {
@@ -127,7 +128,7 @@ public class OrderDetailsController {
         }
     }
 
-    @GetMapping("/delete-order-details/{id}")
+    @GetMapping("/delete-order-details/{number}/{code}")
     public String getDeleteOrderDetails(Model model,
                                   @PathVariable Integer number,
                                         @PathVariable String code) {
@@ -143,7 +144,7 @@ public class OrderDetailsController {
         return "/orderDetails/orderDetails";
     }
 
-    @PostMapping("/delete-order-details/{id}")
+    @PostMapping("/delete-order-details/{number}/{code}")
     public String deleteOrderDetails(Model model,
                                @PathVariable Integer number,
                                      @PathVariable String code) {
