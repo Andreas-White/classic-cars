@@ -48,9 +48,6 @@ public class PaymentController {
 
         Payment payment = new Payment();
 
-      //  System.out.println(payment.getPaymentDate());
-      //  System.out.println(payment.getPaymentDate().getClass());
-
         model.addAttribute("add", true);
         model.addAttribute("payment", payment);
 
@@ -60,8 +57,6 @@ public class PaymentController {
     @PostMapping("/add-payment")
     public String addPayment(Model model,@ModelAttribute("payment") PaymentDT paymentDT) {
         try {
-          // System.out.println(paymentDT.getPaymentDate());
-          // System.out.println(paymentDT.getPaymentDate().getClass());
             Payment newPayment1 = new Payment();
             newPayment1.setCheckNumber(paymentDT.getCheckNumber());
             newPayment1.setPaymentDate(service.convert(paymentDT.getPaymentDate()));

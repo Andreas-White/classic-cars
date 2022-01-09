@@ -6,6 +6,8 @@ import com.retail.demo.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +65,10 @@ public class OrderService {
         else {
             this.repository.deleteById(id);
         }
+    }
+    public LocalDate convert(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.parse(date, formatter);
     }
 
     public Long count() {

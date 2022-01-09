@@ -70,12 +70,6 @@ public class PaymentService {
         }
     }
 
-   // static LocalDate convert(String date) {
-   //   //  return LocalDate.parse(date, DateTimeFormat.forPattern("yyyy-MM-dd"));
-   //     DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-   //     LocalDate ld = LocalDate.parse(date, dateformatter);
-   //     return ld ;
-   // }
    public LocalDate convert(String date) {
        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
        return LocalDate.parse(date, formatter);
