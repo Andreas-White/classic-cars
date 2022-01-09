@@ -3,7 +3,6 @@ package com.retail.demo.controllers;
 
 import com.retail.demo.models.Order;
 import com.retail.demo.models.OrderDT;
-import com.retail.demo.models.Payment;
 import com.retail.demo.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -142,5 +141,5 @@ public class OrderController {
             return "/order/order";
         }
     }
-    
+
 }

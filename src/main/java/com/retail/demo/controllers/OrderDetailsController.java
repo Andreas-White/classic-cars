@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/order-details")
+@RequestMapping("/orderDetails")
 public class OrderDetailsController {
 
     private final OrderDetailsService service;
@@ -29,7 +29,7 @@ public class OrderDetailsController {
 
         model.addAttribute("orderDetails", orderDetails);
         model.addAttribute("title", title);
-        return "/orderDetails/order-details-list";
+        return "/orderDetails/orderDetails-list";
     }
 
     @GetMapping("/list-order-number/{number}")
@@ -71,7 +71,7 @@ public class OrderDetailsController {
         return "/orderDetails/orderDetails";
     }
 
-    @GetMapping("/add-order-details")
+    @GetMapping("/add-orderDetails")
     public String getAddOrderDetails(Model model) {
         OrderDetails orderDetails = new OrderDetails();
         model.addAttribute("add", true);
@@ -81,7 +81,7 @@ public class OrderDetailsController {
     }
 
 
-    @PostMapping("/add-order-details")
+    @PostMapping("/add-orderDetails")
     public String addOrderDetails(Model model,@ModelAttribute("office") OrderDetails orderDetails) {
         try {
             OrderDetails newOrderDetails = service.save(orderDetails);
@@ -95,7 +95,7 @@ public class OrderDetailsController {
         }
     }
 
-    @GetMapping("/update-order-details/{number}/{code}")
+    @GetMapping("/update-orderDetails/{number}/{code}")
     public String getUpdateOrderDetails(Model model, @PathVariable Integer number,
                                               @PathVariable String code ) {
         OrderDetails orderDetails = null;
@@ -109,7 +109,7 @@ public class OrderDetailsController {
         return "/orderDetails/update";
     }
 
-    @PostMapping("/update-order-details/{number}/{code}")
+    @PostMapping("/update-orderDetails/{number}/{code}")
     public String processUpdateOrderDetails(Model model,
                                       @PathVariable Integer number,
                                       @PathVariable String code ,
@@ -128,7 +128,7 @@ public class OrderDetailsController {
         }
     }
 
-    @GetMapping("/delete-order-details/{number}/{code}")
+    @GetMapping("/delete-orderDetails/{number}/{code}")
     public String getDeleteOrderDetails(Model model,
                                   @PathVariable Integer number,
                                         @PathVariable String code) {
@@ -144,7 +144,7 @@ public class OrderDetailsController {
         return "/orderDetails/orderDetails";
     }
 
-    @PostMapping("/delete-order-details/{number}/{code}")
+    @PostMapping("/delete-orderDetails/{number}/{code}")
     public String deleteOrderDetails(Model model,
                                @PathVariable Integer number,
                                      @PathVariable String code) {
@@ -158,7 +158,7 @@ public class OrderDetailsController {
         }
     }
 
-   // @PutMapping("/update-order-details")
+   // @PutMapping("/update-orderDetails")
    // public void updateOrderDetails(@RequestBody OrderDetails orderDetails) {
    //     try {
    //         this.service.update(orderDetails);
@@ -167,7 +167,7 @@ public class OrderDetailsController {
    //     }
    // }
 
-   // @DeleteMapping("/delete-order-details")
+   // @DeleteMapping("/delete-orderDetails")
    // public void deleteOrderDetails(@RequestParam Integer number,
    //                                @RequestParam String code) {
    //     try {
