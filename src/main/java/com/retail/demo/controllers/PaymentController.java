@@ -136,21 +136,5 @@ public class PaymentController {
             return "/payment/payment";
         }
     }
-   // @PutMapping("/update-payment")
-   // public void updatePayment(@RequestBody Payment payment) {
-   //     try {
-   //         this.service.update(payment);
-   //     } catch (Exception e) {
-   //         e.printStackTrace();
-   //     }
-   // }
-//
-   // @DeleteMapping("/delete-payment/{id}")
-   // public void deletePayment(@PathVariable String id) {
-   //     try {
-   //         this.service.deleteById(id);
-   //     } catch (Exception e) {
-   //         e.printStackTrace();
-   //     }
-   // }
+
 }

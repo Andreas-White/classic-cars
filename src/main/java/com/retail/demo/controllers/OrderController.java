@@ -142,22 +142,5 @@ public class OrderController {
             return "/order/order";
         }
     }
-
-   // @PutMapping("/update-order")
-   // public void updateCustomer(@RequestBody Order order) {
-   //     try {
-   //         this.orderService.update(order);
-   //     } catch (Exception e) {
-   //         e.printStackTrace();
-   //     }
-   // }
-//
-   // @DeleteMapping("/delete-order/{id}")
-   // public void deleteCustomer(@PathVariable Integer id) {
-   //     try {
-   //         this.orderService.deleteById(id);
-   //     } catch (Exception e) {
-   //         e.printStackTrace();
-   //     }
-   // }
+    
 }
