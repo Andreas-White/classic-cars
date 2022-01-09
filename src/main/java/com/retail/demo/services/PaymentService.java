@@ -30,7 +30,7 @@ public class PaymentService {
         return this.repository.findById(id).orElse(null);
     }
 
-    public void save(Payment payment) throws Exception {
+    public Payment save(Payment payment) throws Exception {
 
         if (payment.getCheckNumber() == null) {
             String id = this.repository.getMaxId();
@@ -42,7 +42,7 @@ public class PaymentService {
         if (existsById(payment.getCheckNumber())) {
             throw new Exception("Payment with id:" + payment.getCheckNumber() + " already exists");
         }
-        this.repository.save(payment);
+        return this.repository.save(payment);
     }
 
     public void update(Payment payment) throws Exception {
