@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Order List</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>{{title}}</h1>
+
+<div>
+    <nobr>
+        <a href="/order/add-order">Add Order</a> |
+        <a href="/">Home</a>
+    </nobr>
+</div>
+<br/><br/>
+<div>
+    <table border="2">
+        <tr>
+            <th>Order Date</th>
+            <th>Required Date</th>
+            <th>Shipped Date</th>
+            <th>Status</th>
+            <th>Comments</th>
+            <th>Customer Number</th>
+        </tr>
+        {{#orders}}
+            <tr>
+                <td><a href="/order/{{orderNumber}}">{{orderDate}}</a></td>
+                <td>{{requiredDate}}</td>
+                <td>{{#shippedDate}}{{shippedDate}}{{/shippedDate}}</td>
+                <td>{{status}}</td>
+                <td>{{#comments}}{{comments}}{{/comments}}</td>
+                <td>{{customerNumber}}</td>
+                <td><a href="/order/{{orderNumber}}">Edit</a></td>
+            </tr>
+        {{/orders}}
+    </table>
+</div>
+<br/><br/>
+{{>footer}}
+</body>
+</html>

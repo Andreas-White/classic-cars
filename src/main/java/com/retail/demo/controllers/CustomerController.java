@@ -1,6 +1,7 @@
 package com.retail.demo.controllers;
 
 import com.retail.demo.models.Customer;
+import com.retail.demo.models.Employee;
 import com.retail.demo.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -65,10 +66,18 @@ public class CustomerController {
         return "/customer/customer";
     }
 
-    @GetMapping("/name/{name}")
-    public Customer getCustomerByName(@PathVariable String name) {
-        return this.customerService.findByName(name);
-    }
+ @GetMapping("/name/{name}")
+ public String getCustomerByName(Model model,
+                                 @PathVariable String name) {
+
+     List<Customer> customers = this.customerService.getCustomersByName(name);
+     String title = "All Customer in:" + name;  ///////////////////////
+
+     model.addAttribute("title", title);
+     model.addAttribute("customers", customers);
+
+     return "/customer/customer-list";
+ }
 
     @GetMapping("/add-customer")
     public String getAddCustomer(Model model) {

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>orders</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>View Orders</h1>
+<a href="/order/list-all">Back to Orders List</a>
+<br/><br/>
+{{#order}}
+    <table border="0">
+        <tr>
+            <td>Order Date</td>
+            <td>:</td>
+            <td>{{orderDate}}</td>
+        </tr>
+        <tr>
+            <td>Required Date</td>
+            <td>:</td>
+            <td>{{#requiredDate}}{{requiredDate}}{{/requiredDate}}</td>
+        </tr>
+        <tr>
+            <td>Shipped Date</td>
+            <td>:</td>
+            <td>{{#shippedDate}}{{shippedDate}}{{/shippedDate}}</td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td>:</td>
+            <td>{{status}}</td>
+        </tr>
+        <tr>
+            <td>Comments</td>
+            <td>:</td>
+            <td>{{#comments}}{{comments}}{{/comments}}</td>
+        </tr>
+        <tr>
+            <td>Customer Number</td>
+            <td>:</td>
+            <td>{{customerNumber}}</td>
+        </tr>
+
+    </table>
+    <br/><br/>
+    {{#allowDelete}}
+        <form action="/order/delete-order/{{orderNumber}}" method="POST">
+            Delete this order? <input type="submit" value="Yes" />
+        </form>
+    {{/allowDelete}}
+    {{^allowDelete}}
+        <div>
+            <a href="/order/update-order/{{orderNumber}}">Edit</a> |
+            <a href="/order/delete-order/{{orderNumber}}">Delete</a>
+        </div>
+    {{/allowDelete}}
+{{/order}}
+{{#errorMessage}}
+    <div class="error">{{errorMessage}}</div>
+{{/errorMessage}}
+{{>footer}}
+</body>
+</html>

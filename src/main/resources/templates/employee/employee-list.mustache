@@ -10,7 +10,7 @@
 
 <div>
     <nobr>
-        <a href="/employee/add-customer">Add Employee</a> |
+        <a href="/employee/add-employee">Add Employee</a> |
         <a href="/">Home</a>
     </nobr>
 </div>
@@ -27,12 +27,12 @@
         </tr>
         {{#employees}}
             <tr>
-                <td><a href="/customer/{{employeeNumber}}">{{firstName}}</a></td>
+                <td><a href="/employee/{{employeeNumber}}">{{firstName}}</a></td>
                 <td>{{lastName}}</td>
                 <td>{{email}}</td>
                 <td>{{officeCode}}</td>
                 <td>{{jobTitle}}</td>
-                <td><a href="/customer/{{employeeNumber}}">Edit</a></td>
+                <td><a href="/employee/{{employeeNumber}}">Edit</a></td>
             </tr>
         {{/employees}}
     </table>

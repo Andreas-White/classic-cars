@@ -28,7 +28,7 @@ public class ProductLineService {
         return this.repository.findById(id).orElse(null);
     }
 
-    public void save(ProductLine productLine) throws Exception {
+    public ProductLine save(ProductLine productLine) throws Exception {
 
         if (productLine.getProductLine() == null) {
             throw new Exception("You must provide a name for product line");
@@ -37,7 +37,7 @@ public class ProductLineService {
         if (existsById(productLine.getProductLine())) {
             throw new Exception("Product line with id:" + productLine.getProductLine() + " already exists");
         }
-        this.repository.save(productLine);
+        return this.repository.save(productLine);
     }
 
     public void update(ProductLine productLine) throws Exception {

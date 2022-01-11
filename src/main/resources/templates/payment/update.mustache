@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{{#add}}Create new Payment{{/add}}{{^add}}Edit Payment{{/add}}</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>{{#add}}Create new Payment:{{/add}}{{^add}}Edit Payment:{{/add}}</h1>
+<a href="/payment/list-all">Back to Payment List</a>
+<br/><br/>
+{{#payment}}
+    <form action="{{#add}}/payment/add-payment{{/add}}{{^add}}/payment/update-payment/{{id}}{{/add}}" name="payment" method="POST">
+        <table border="0">
+            {{#checkNumber}}
+                <tr>
+                    <td>ID</td>
+                    <td>:</td>
+                    <td>{{checkNumber}}</td>
+                </tr>
+            {{/checkNumber}}
+            <tr>
+                <td>Customer Number</td>
+                <td>:</td>
+                <td><input type="text" name="customerNumber" value="{{#customerNumber}}{{customerNumber}}{{/customerNumber}}" /></td>
+            </tr>
+            <tr>
+                <td>Payment Date</td>
+                <td>:</td>
+                <td><input type="text" name="paymentDate" value="{{#paymentDate}}{{paymentDate}}{{/paymentDate}}" /></td>
+            </tr>
+            <tr>
+                <td>Amount</td>
+                <td>:</td>
+                <td><input type="text" name="amount" value="{{#amount}}{{amount}}{{/amount}}" /></td>
+            </tr>
+        </table>
+        <input type="submit" value="{{#add}}Create{{/add}}{{^add}}Update{{/add}}" />
+    </form>
+{{/payment}}
+
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div class="error">{{#errorMessage}}{{errorMessage}}{{/errorMessage}}</div>
+{{>footer}}
+</body>
+</html>

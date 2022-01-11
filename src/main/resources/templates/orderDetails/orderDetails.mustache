@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Order Details</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>View Order Details</h1>
+<a href="/order-details/list-all">Back to Order Details List</a>
+<br/><br/>
+{{#orderDetails}}
+    <table border="0">
+        <tr>
+            <td>Order Number</td>
+            <td>:</td>
+            <td>{{orderNumber}}</td>
+        </tr>
+        <tr>
+            <td>Product Code</td>
+            <td>:</td>
+            <td>{{productCode}}</td>
+        </tr>
+        <tr>
+            <td>Quantity Ordered</td>
+            <td>:</td>
+            <td>{{quantityOrdered}}</td>
+        </tr>
+        <tr>
+            <td>Price Each</td>
+            <td>:</td>
+            <td>{{priceEach}}</td>
+        </tr>
+        <tr>
+            <td>Order Line Number</td>
+            <td>:</td>
+            <td>{{orderLineNumber}}</td>
+        </tr>
+
+
+    </table>
+    <br/><br/>
+    {{#allowDelete}}
+        <form action="/order-details/delete-order-details/{{orderNumber}}/{{productCode}}" method="POST">
+            Delete this order-detail? <input type="submit" value="Yes" />
+        </form>
+    {{/allowDelete}}
+    {{^allowDelete}}
+        <div>
+            <a href="/order-details/update-order-details/{{orderNumber}}/{{productCode}}">Edit</a> |
+            <a href="/order-details/delete-order-details/{{orderNumber}}/{{productCode}}">Delete</a>
+        </div>
+    {{/allowDelete}}
+{{/orderDetails}}
+{{#errorMessage}}
+    <div class="error">{{errorMessage}}</div>
+{{/errorMessage}}
+{{>footer}}
+</body>
+</html>

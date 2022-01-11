@@ -6,6 +6,8 @@ import com.retail.demo.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +33,7 @@ public class OrderService {
         return repository.findById(id).orElse(null);
     }
 
-    public void save(Order order) throws Exception {
+    public Order save(Order order) throws Exception {
 
         if (order.getOrderNumber() == null) {
             Integer id = repository.getMaxId() + 3;
@@ -41,7 +43,7 @@ public class OrderService {
         if (existsById(order.getOrderNumber())) {
             throw new Exception("Order already exists");
         }
-        repository.save(order);
+        return repository.save(order);
     }
 
     public void update(Order order) throws Exception {
@@ -64,6 +66,11 @@ public class OrderService {
             this.repository.deleteById(id);
         }
     }
+    public LocalDate convert(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.parse(date, formatter);
+    }
+
 
     public Integer getMaxOrderNumber() {
         return this.repository.getMaxId();

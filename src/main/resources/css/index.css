@@ -1,0 +1,46 @@
+html {
+    line-height: 1.15; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+h1m{
+    font-family: "Agency FB";
+    color: orangered;
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+.nav{
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 150%;
+    overflow: hidden;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: darkred;
+}
+.nav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+
+main{
+    margin: auto;
+}
+
+.col3div1{
+    float: left;
+    width: 38%;
+}
+.col3div2{
+    float: left;
+    width: 27%;
+}
+.col3div3{
+    float: left;
+    width: 27%;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Offices</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>View Offices</h1>
+<a href="/office/list-all">Back to Offices List</a>
+<br/><br/>
+{{#office}}
+    <table border="0">
+        <tr>
+            <td>City</td>
+            <td>:</td>
+            <td>{{city}}</td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>:</td>
+            <td>{{phone}}</td>
+        </tr>
+        <tr>
+            <td>Address Line</td>
+            <td>:</td>
+            <td>{{addressLine}}</td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td>:</td>
+            <td>{{country}}</td>
+        </tr>
+        <tr>
+            <td>Postal Code</td>
+            <td>:</td>
+            <td>{{postalCode}}</td>
+        </tr>
+
+    </table>
+    <br/><br/>
+    {{#allowDelete}}
+        <form action="/office/delete-office/{{officeCode}}" method="POST">
+            Delete this office? <input type="submit" value="Yes" />
+        </form>
+    {{/allowDelete}}
+    {{^allowDelete}}
+        <div>
+            <a href="/office/update-office/{{officeCode}}">Edit</a> |
+            <a href="/office/delete-office/{{officeCode}}">Delete</a>
+        </div>
+    {{/allowDelete}}
+{{/office}}
+{{#errorMessage}}
+    <div class="error">{{errorMessage}}</div>
+{{/errorMessage}}
+{{>footer}}
+</body>
+</html>

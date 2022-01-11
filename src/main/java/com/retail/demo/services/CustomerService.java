@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@PreAuthorize("hasRole('ROLE_USER')")
 public class CustomerService {
 
     private final CustomerRepository repository;
@@ -39,6 +38,10 @@ public class CustomerService {
     public List<Integer> getBottomTenAmount() {
         return new ArrayList<>(this.repository.getBottomTenCustomersAmount());
     }
+
+  public List<Customer> getCustomersByName(String name) {
+      return this.repository.getCustomersByCustomerName(name);
+  }
 
     private boolean existsById(Integer id) {
         return this.repository.existsById(id);

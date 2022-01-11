@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{{#add}}Create new Order{{/add}}{{^add}}Edit Order{{/add}}</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>{{#add}}Create new Order:{{/add}}{{^add}}Edit Order:{{/add}}</h1>
+<a href="/order/list-all">Back to Order List</a>
+<br/><br/>
+{{#order}}
+    <form action="{{#add}}/order/add-order{{/add}}{{^add}}/order/update-order/{{id}}{{/add}}" name="order" method="POST">
+        <table border="0">
+            {{#orderNumber}}
+                <tr>
+                    <td>ID</td>
+                    <td>:</td>
+                    <td>{{orderNumber}}</td>
+                </tr>
+            {{/orderNumber}}
+            <tr>
+                <td>Order Date</td>
+                <td>:</td>
+                <td><input type="text" name="orderDate" value="{{#orderDate}}{{orderDate}}{{/orderDate}}" /></td>
+            </tr>
+            <tr>
+                <td>Required Date</td>
+                <td>:</td>
+                <td><input type="text" name="requiredDate" value="{{#requiredDate}}{{requiredDate}}{{/requiredDate}}" /></td>
+            </tr>
+            <tr>
+                <td>Shipped Date</td>
+                <td>:</td>
+                <td><input type="text" name="shippedDate" value="{{#shippedDate}}{{shippedDate}}{{/shippedDate}}" /></td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>:</td>
+                <td><input type="text" name="status" value="{{#status}}{{status}}{{/status}}" /></td>
+            </tr>
+            <tr>
+                <td>Comments</td>
+                <td>:</td>
+                <td><input type="text" name="comments" value="{{#comments}}{{comments}}{{/comments}}" /></td>
+            </tr>
+            <tr>
+                <td>Customer Number</td>
+                <td>:</td>
+                <td><input type="text" name="customerNumber" value="{{#customerNumber}}{{customerNumber}}{{/customerNumber}}" /></td>
+            </tr>
+        </table>
+        <input type="submit" value="{{#add}}Create{{/add}}{{^add}}Update{{/add}}" />
+    </form>
+{{/order}}
+
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div class="error">{{#errorMessage}}{{errorMessage}}{{/errorMessage}}</div>
+{{>footer}}
+</body>
+</html>

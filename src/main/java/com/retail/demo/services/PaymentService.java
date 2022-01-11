@@ -33,7 +33,7 @@ public class PaymentService {
         return this.repository.findById(id).orElse(null);
     }
 
-    public void save(Payment payment) throws Exception {
+    public Payment save(Payment payment) throws Exception {
 
         if (payment.getCheckNumber() == null) {
             String id = this.repository.getMaxId();
@@ -45,7 +45,8 @@ public class PaymentService {
         if (existsById(payment.getCheckNumber())) {
             throw new Exception("Payment with id:" + payment.getCheckNumber() + " already exists");
         }
-        this.repository.save(payment);
+        //String date = payment.getPaymentDate();
+        return this.repository.save(payment);
     }
 
     public void update(Payment payment) throws Exception {
@@ -68,6 +69,11 @@ public class PaymentService {
             this.repository.deleteById(id);
         }
     }
+
+   public LocalDate convert(String date) {
+       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+       return LocalDate.parse(date, formatter);
+   }
 
     public Long count() {
         return this.repository.count();

@@ -38,7 +38,7 @@ public class OfficeService {
         return this.repository.getAllByCountry(country);
     }
 
-    public void save(Office office) throws Exception {
+    public Office save(Office office) throws Exception {
 
         if (office.getOfficeCode() == null) {
             Integer id = Math.toIntExact(count() + 1);
@@ -48,7 +48,7 @@ public class OfficeService {
         if (office.getOfficeCode() != null && existsById(office.getOfficeCode())) {
             throw new Exception("Office already exists" + office.getOfficeCode());
         }
-        this.repository.save(office);
+        return this.repository.save(office);
     }
 
     public void update(Office office) throws Exception {

@@ -1,20 +1,82 @@
 <html>
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>{{title}}</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/index.css"/>
 </head>
+
 <body>
 <h1>{{title}}</h1>
-<a href="/customer/list-all">Customer List</a><br>
-<a href="/customer/top-ten">Best Customers</a><br>
-<a href="/customer/bottom-ten">Worst Customers</a><br>
-<a href="/employee/list-all">Employee List</a><br>
-<a href="/employee/all-sellers">Sellers List</a><br>
+<header>
 
-<a href="/product/list-all">Product List</a><br>
-<a href="/product/top-ten">Best Products</a><br>
-<a href="/product/bottom-ten">Worst Products</a><br>
+
+    <h1 class="h1m"></h1>
+    <p style="font-size: 180% ;">Main Lists</p>
+
+    <div class="nav">
+
+        <a href="/customer/list-all">Customer List</a><br>
+        <a href="/customer/top-ten">Best Customers</a><br>
+        <a href="/customer/bottom-ten">Worst Customers</a><br>
+
+        <a href="/employee/list-all">Employee List</a><br>
+        <a href="/employee/top-ten">Best Employees</a><br>
+        <a href="/employee/bottom-ten">Worst Employees</a><br>
+        <a href="/employee/all-sellers">Sellers List</a><br>
+        <a href="/employee/all-vps">VPs List</a><br>
+        <a href="/employee/all-managers">Managers List</a><br>
+
+
+        <a href="/employee/employees-office/city"> Employee By City</a><br>
+
+
+        <a href="/product/list-all">Product List</a><br>
+        <a href="/product/top-ten">Best Products</a><br>
+        <a href="/product/bottom-ten">Worst Products</a><br>
+
+        <a href="/office/list-all">Office List</a><br>
+
+        <a href="/order/list-all">Order List</a><br>
+
+        <a href="/payment/list-all">Payments List</a><br>
+
+        <a href="/product-line/list-all">Product Lines List</a><br>
+
+        <a href="/order-details/list-all">Order-Details List</a><br>
+
+    </div>
+
+</header>
+
+<main>
+    <div  class="wrapper">
+        <div class="col3div3" style="border: 2px solid black;">
+            <aside style="border: 2px solid #030;">
+                <h1 class="h1e">Employee Lists</h1>
+                <a href="/employee/list-all">Employee List</a><br>
+                <a href="/employee/top-ten">Best Employees</a><br>
+                <a href="/employee/bottom-ten">Worst Employees</a><br>
+                <a href="/employee/all-sellers">Sellers List</a><br>
+                <a href="/employee/all-vps">VPs List</a><br>
+                <a href="/employee/all-managers">Managers List</a><br>
+                <form onsubmit="window.location = '/employee/employees-office/' + search.value; return false;">
+                    <input id="search" placeholder="Search" type="search" name="search"></input>
+                    <input type="submit" value=" Type a city name to get a list of employees from that city ">
+                </form>
+
+            </aside>
+        </div>
+
+        <div  class="col3div1" style="border: 2px solid blue;">
+            <p style="font-size: 130%;" >dsdda.</p>
+        </div>
+
+
+
+    </div>
+
+
+</main>
 
 
 {{>footer}}
