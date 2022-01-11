@@ -79,8 +79,4 @@ public class PaymentService {
         return this.repository.count();
     }
 
-    public LocalDate convert(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
-        return LocalDate.parse(date, formatter);
-    }
 }

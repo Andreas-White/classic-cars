@@ -1,6 +1,7 @@
 package com.retail.demo.controllers;
 
 
+import com.retail.demo.models.Customer;
 import com.retail.demo.models.Order;
 import com.retail.demo.models.OrderDT;
 import com.retail.demo.services.OrderService;
@@ -33,18 +34,14 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public Order getOrderById(@PathVariable Integer id) {
-        return this.orderService.findById(id);
-    }
-
-    @PostMapping("/add-order")
-    public String getOrderById(Model model,@PathVariable Integer id) {
+    public String getOrderById(Model model,
+                               @PathVariable Integer id) {
         Order order = null;
         try {
-            order  = orderService.findById(id);
+            order = orderService.findById(id);
             model.addAttribute("allowDelete", false);
         } catch (Exception ex) {
-            model.addAttribute("errorMessage", "No orders found with that ID");
+            model.addAttribute("errorMessage", "No customer found with that ID");
         }
         model.addAttribute("order", order);
         return "/order/order";
@@ -60,19 +57,19 @@ public class OrderController {
     }
 
     @PostMapping("/add-order")
-    public String addOrder(Model model,@ModelAttribute("order") OrderDT orderDT) {
+    public String addOrder(Model model, @ModelAttribute("order") OrderDT orderDT) {
         try {
-            Order newOrder1 = new Order();
-            newOrder1.setOrderNumber(orderDT.getOrderNumber());
-            newOrder1.setOrderDate(orderService.convert(orderDT.getOrderDate()));
-            newOrder1.setCustomerNumber(orderDT.getCustomerNumber());
-            newOrder1.setComments(orderDT.getComments());
-            newOrder1.setRequiredDate(orderService.convert(orderDT.getRequiredDate()));
-            newOrder1.setShippedDate(orderService.convert(orderDT.getShippedDate()));
-            newOrder1.setStatus(orderDT.getStatus());
+            Order order = new Order();
+            order.setOrderNumber(orderDT.getOrderNumber());
+            order.setOrderDate(orderService.convert(orderDT.getOrderDate()));
+            order.setCustomerNumber(orderDT.getCustomerNumber());
+            order.setComments(orderDT.getComments());
+            order.setRequiredDate(orderService.convert(orderDT.getRequiredDate()));
+            order.setShippedDate(orderService.convert(orderDT.getShippedDate()));
+            order.setStatus(orderDT.getStatus());
 
 
-            Order newOrder = orderService.save(newOrder1);
+            Order newOrder = orderService.save(order);
             return "redirect:/order/" + newOrder.getOrderNumber();
         } catch (Exception ex) {
             String errorMessage = ex.getMessage();
@@ -98,19 +95,19 @@ public class OrderController {
 
     @PostMapping("/update-order/{id}")
     public String processUpdateOrder(Model model,
-                                      @PathVariable Integer id,
-                                      @ModelAttribute("order") OrderDT orderDT) {
+                                     @PathVariable Integer id,
+                                     @ModelAttribute("order") OrderDT orderDT) {
         try {
-            Order newOrder1 = new Order();
-            newOrder1.setOrderNumber(id);
-            newOrder1.setOrderDate(orderService.convert(orderDT.getOrderDate()));
-            newOrder1.setCustomerNumber(orderDT.getCustomerNumber());
-            newOrder1.setComments(orderDT.getComments());
-            newOrder1.setRequiredDate(orderService.convert(orderDT.getRequiredDate()));
-            newOrder1.setShippedDate(orderService.convert(orderDT.getShippedDate()));
-            newOrder1.setStatus(orderDT.getStatus());
-            orderService.update(newOrder1);
-            return "redirect:/order/" + newOrder1.getOrderNumber();
+            Order order = new Order();
+            order.setOrderNumber(id);
+            order.setOrderDate(orderService.convert(orderDT.getOrderDate()));
+            order.setCustomerNumber(orderDT.getCustomerNumber());
+            order.setComments(orderDT.getComments());
+            order.setRequiredDate(orderService.convert(orderDT.getRequiredDate()));
+            order.setShippedDate(orderService.convert(orderDT.getShippedDate()));
+            order.setStatus(orderDT.getStatus());
+            orderService.update(order);
+            return "redirect:/order/" + order.getOrderNumber();
         } catch (Exception ex) {
             String errorMessage = ex.getMessage();
             model.addAttribute("errorMessage", errorMessage);
@@ -123,7 +120,7 @@ public class OrderController {
 
     @GetMapping("/delete-order/{id}")
     public String getDeleteOrder(Model model,
-                                   @PathVariable Integer id) {
+                                 @PathVariable Integer id) {
         Order order = null;
         try {
             order = orderService.findById(id);
@@ -138,7 +135,7 @@ public class OrderController {
 
     @PostMapping("/delete-order/{id}")
     public String deleteOrder(Model model,
-                                @PathVariable Integer id) {
+                              @PathVariable Integer id) {
         try {
             orderService.deleteById(id);
             return "redirect:/order/list-all";

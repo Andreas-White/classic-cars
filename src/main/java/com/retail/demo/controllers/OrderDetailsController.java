@@ -3,6 +3,7 @@ package com.retail.demo.controllers;
 import com.retail.demo.models.Employee;
 import com.retail.demo.models.Office;
 import com.retail.demo.models.OrderDetails;
+import com.retail.demo.models.OrderDetailsDT;
 import com.retail.demo.services.OrderDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -82,17 +83,29 @@ public class OrderDetailsController {
 
 
     @PostMapping("/add-order-details")
-    public String addOrderDetails(Model model,@ModelAttribute("office") OrderDetails orderDetails) {
+    public String addOrderDetails(Model model,
+                                  @ModelAttribute("office") OrderDetailsDT orderDetailsDT) {
+
         OrderDetails newOrderDetails = new OrderDetails();
         try {
-             newOrderDetails = service.save(orderDetails);
-            return "redirect:/order-details/" + newOrderDetails.getOrderNumber() + "/" + orderDetails.getProductCode();
+
+            OrderDetails orderDetails = new OrderDetails();
+
+            orderDetails.setOrderNumber(service.convert(orderDetailsDT.getOrderNumber()));
+            orderDetails.setProductCode(orderDetailsDT.getProductCode());
+            orderDetails.setQuantityOrdered(orderDetailsDT.getQuantityOrdered());
+            orderDetails.setPriceEach(orderDetailsDT.getPriceEach());
+            orderDetails.setOrderLineNumber(orderDetailsDT.getOrderLineNumber());
+
+            newOrderDetails = service.save(orderDetails);
+            return "redirect:/order-details/" + newOrderDetails.getOrderNumber() + "/" + newOrderDetails.getProductCode();
         } catch (Exception ex) {
             String errorMessage = ex.getMessage();
-           // model.addAttribute("errorMessage", errorMessage);
-//
-           // model.addAttribute("add", true);
-            return "redirect:/order-details/" + newOrderDetails.getOrderNumber() + "/" + orderDetails.getProductCode();
+            model.addAttribute("errorMessage", errorMessage);
+
+            model.addAttribute("add", true);
+            return "redirect:/order-details/" + service.convert(orderDetailsDT.getOrderNumber())
+                    + "/" + orderDetailsDT.getProductCode();
         }
     }
 
@@ -114,10 +127,17 @@ public class OrderDetailsController {
     public String processUpdateOrderDetails(Model model,
                                       @PathVariable Integer number,
                                       @PathVariable String code ,
-                                      @ModelAttribute("orderDetails") OrderDetails orderDetails) {
+                                      @ModelAttribute("orderDetails") OrderDetailsDT orderDetailsDT) {
         try {
+
+            OrderDetails orderDetails = new OrderDetails();
+
             orderDetails.setOrderNumber(number);
             orderDetails.setProductCode(code);
+            orderDetails.setQuantityOrdered(orderDetailsDT.getQuantityOrdered());
+            orderDetails.setPriceEach(orderDetailsDT.getPriceEach());
+            orderDetails.setOrderLineNumber(orderDetailsDT.getOrderLineNumber());
+
             service.update(orderDetails);
             return "redirect:/order-details/" + orderDetails.getOrderNumber() + "/" + orderDetails.getProductCode();
         } catch (Exception ex) {

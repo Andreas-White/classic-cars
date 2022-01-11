@@ -114,6 +114,10 @@ public class OrderDetailsService {
         }
     }
 
+    public Integer convert(String orderNumber) {
+        return Integer.parseInt(orderNumber);
+    }
+
     public Long count() {
         return this.repository.count();
     }
