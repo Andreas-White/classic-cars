@@ -1,6 +1,7 @@
 package com.retail.demo.services;
 
 import com.retail.demo.models.Customer;
+import com.retail.demo.models.Employee;
 import com.retail.demo.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -39,6 +40,10 @@ public class CustomerService {
     public List<Integer> getBottomTenAmount() {
         return new ArrayList<>(this.repository.getBottomTenCustomersAmount());
     }
+
+  public List<Customer> getCustomersByName(String name) {
+      return this.repository.getCustomersByCustomerName(name);
+  }
 
     private boolean existsById(Integer id) {
         return this.repository.existsById(id);

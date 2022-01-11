@@ -1,6 +1,7 @@
 package com.retail.demo.repositories;
 
 import com.retail.demo.models.Customer;
+import com.retail.demo.models.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -37,6 +38,10 @@ public interface CustomerRepository extends JpaRepository<Customer,Integer> {
     List<Integer> getBottomTenCustomersAmount();
 
     Customer getCustomerByCustomerName(String name);
+
+
+    //List<Customer> getCustomerByCustomer_Name(String name);
+    List<Customer> getCustomersByCustomerName(String name);
 
     boolean existsDistinctByCustomerName(String name);
 
