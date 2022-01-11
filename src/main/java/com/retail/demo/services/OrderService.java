@@ -65,6 +65,10 @@ public class OrderService {
         }
     }
 
+    public Integer getMaxOrderNumber() {
+        return this.repository.getMaxId();
+    }
+
     public Long count() {
         return this.repository.count();
     }

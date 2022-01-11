@@ -3,8 +3,11 @@ package com.retail.demo.services;
 import com.retail.demo.models.Payment;
 import com.retail.demo.repositories.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,5 +71,10 @@ public class PaymentService {
 
     public Long count() {
         return this.repository.count();
+    }
+
+    public LocalDate convert(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+        return LocalDate.parse(date, formatter);
     }
 }

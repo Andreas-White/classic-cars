@@ -24,12 +24,12 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public Order getCustomerById(@PathVariable Integer id) {
+    public Order getOrderById(@PathVariable Integer id) {
         return this.orderService.findById(id);
     }
 
     @PostMapping("/add-order")
-    public void addCustomer(@RequestBody Order order) {
+    public void addOrder(@RequestBody Order order) {
         try {
             this.orderService.save(order);
         } catch (Exception e) {
@@ -38,7 +38,7 @@ public class OrderController {
     }
 
     @PutMapping("/update-order")
-    public void updateCustomer(@RequestBody Order order) {
+    public void updateOrder(@RequestBody Order order) {
         try {
             this.orderService.update(order);
         } catch (Exception e) {
@@ -47,7 +47,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/delete-order/{id}")
-    public void deleteCustomer(@PathVariable Integer id) {
+    public void deleteOrder(@PathVariable Integer id) {
         try {
             this.orderService.deleteById(id);
         } catch (Exception e) {

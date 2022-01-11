@@ -74,8 +74,16 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees-office/{city}")
-    public List<Employee> getEmployeesByOffice(@PathVariable String city) {
-        return this.employeeService.getEmployeesByOffice(city);
+    public String getEmployeesByOffice(Model model,
+                                               @PathVariable String city) {
+
+        List<Employee> employees = this.employeeService.getEmployeesByOffice(city);
+        String title = "All sellers";
+
+        model.addAttribute("title", title);
+        model.addAttribute("employees", employees);
+
+        return "/employee/employee-list";
     }
 
 

@@ -62,7 +62,8 @@ public class OrderDetailsService {
     public void save(OrderDetails orderDetails) throws Exception {
 
         if (orderDetails.getOrderNumber() == null) {
-            throw new Exception("no order number was provided");
+//            throw new Exception("no order number was provided");
+            orderDetails.setOrderNumber(this.orderService.getMaxOrderNumber());
         }
 
         if (!getOrderService().existsById(orderDetails.getOrderNumber())) {
