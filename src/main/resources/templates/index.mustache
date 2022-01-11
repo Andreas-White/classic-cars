@@ -48,6 +48,53 @@
 
 </header>
 
+<main>
+    <div  class="wrapper">
+        <div class="col3div3" style="border: 2px solid black;">
+            <aside style="border: 2px solid #030;">
+                <h1 class="h1e">Employee Lists</h1>
+                <a href="/employee/list-all">Employee List</a><br>
+                <a href="/employee/top-ten">Best Employees</a><br>
+                <a href="/employee/bottom-ten">Worst Employees</a><br>
+                <a href="/employee/all-sellers">Sellers List</a><br>
+                <a href="/employee/all-vps">VPs List</a><br>
+                <a href="/employee/all-managers">Managers List</a><br>
+                <form onsubmit="window.location = '/employee/employees-office/' + search.value; return false;">
+                    <input id="search" placeholder="Search" type="search" name="search"></input>
+                    <input type="submit" value=" Type a city name to get a list of employees from that city ">
+                </form>
+
+            </aside>
+        </div>
+
+        <div  class="col3div1" style="border: 2px solid blue;">
+            <p style="font-size: 130%;" >While waiting for food to arrive, you can review some very exiting  Courses and lectures offered by Linnaeus University,
+                these courses cover computer science topics,mainly software development.While waiting for food to arrive, you can review some very exiting  Courses and lectures offered by Linnaeus University,
+                these courses cover computer science topics,mainly software development.</p>
+        </div>
+
+
+        <div class="col3div2" style="border: 2px solid black;">
+            <aside style="border: 2px solid #030;">
+                <h1 style="font-size:130%" >Related</h1>
+                <p>
+                    links to the courses:
+                <p ><a href="https://coursepress.lnu.se/">https://coursepress.lnu.se</a></p>
+                <p><a href="https://standardjs.com//">https://standardjs.com/</a></p>
+                <p><a href="https://coursepress.lnu.se/courses/">https://coursepress.lnu.se/courses/</a></p>
+                <section style="border: 1px solid gray;">
+                    <h1 style="font-size:130%" >Today's weather</h1>
+                    <p>A sunny and appetizing weather expected today, celebrate with your favourite meal</p>
+                </section>
+                </p>
+
+            </aside>
+        </div>
+    </div>
+
+
+</main>
+
 
 {{>footer}}
 </body>
