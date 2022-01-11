@@ -140,12 +140,4 @@ public class OfficeController {
         }
     }
 
-   // @DeleteMapping("/delete-office/{id}")
-   // public void deleteOffice(@PathVariable Integer id) {
-   //     try {
-   //         this.officeService.deleteById(id);
-   //     } catch (Exception e) {
-   //         e.printStackTrace();
-   //     }
-   // }
 }

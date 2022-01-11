@@ -71,6 +71,7 @@ public class OrderService {
         return LocalDate.parse(date, formatter);
     }
 
+
     public Long count() {
         return this.repository.count();
     }

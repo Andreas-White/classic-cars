@@ -10,7 +10,7 @@
 
 <div>
     <nobr>
-        <a href="/orderDetails/list-all">Add Order Details</a> |
+        <a href="/order-details/add-order-details">Add Order Details</a> |
         <a href="/">Home</a>
     </nobr>
 </div>
@@ -26,11 +26,11 @@
         </tr>
         {{#orderDetails}}
             <tr>
-                <td><a href="/orderDetails/{{orderNumber}}">{{productCode}}</a></td>
+                <td><a href="/order-details/{{orderNumber}}/{{productCode}}">{{productCode}}</a></td>
                 <td>{{quantityOrdered}}</td>
                 <td>{{priceEach}}</td>
                 <td>{{orderLineNumber}}</td>
-                <td><a href="/orderDetails/{{orderNumber}}">Edit</a></td>
+                <td><a href="/order-details/{{orderNumber}}/{{productCode}}">Edit</a></td>
             </tr>
         {{/orderDetails}}
     </table>

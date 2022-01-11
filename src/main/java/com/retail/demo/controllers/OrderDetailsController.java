@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/orderDetails")
+@RequestMapping("/order-details")
 public class OrderDetailsController {
 
     private final OrderDetailsService service;
@@ -71,7 +71,7 @@ public class OrderDetailsController {
         return "/orderDetails/orderDetails";
     }
 
-    @GetMapping("/add-orderDetails")
+    @GetMapping("/add-order-details")
     public String getAddOrderDetails(Model model) {
         OrderDetails orderDetails = new OrderDetails();
         model.addAttribute("add", true);
@@ -81,21 +81,22 @@ public class OrderDetailsController {
     }
 
 
-    @PostMapping("/add-orderDetails")
+    @PostMapping("/add-order-details")
     public String addOrderDetails(Model model,@ModelAttribute("office") OrderDetails orderDetails) {
+        OrderDetails newOrderDetails = new OrderDetails();
         try {
-            OrderDetails newOrderDetails = service.save(orderDetails);
-            return "redirect:/orderDetails/" + newOrderDetails.getOrderNumber();
+             newOrderDetails = service.save(orderDetails);
+            return "redirect:/order-details/" + newOrderDetails.getOrderNumber() + "/" + orderDetails.getProductCode();
         } catch (Exception ex) {
             String errorMessage = ex.getMessage();
-            model.addAttribute("errorMessage", errorMessage);
-
-            model.addAttribute("add", true);
-            return "/orderDetails/update";
+           // model.addAttribute("errorMessage", errorMessage);
+//
+           // model.addAttribute("add", true);
+            return "redirect:/order-details/" + newOrderDetails.getOrderNumber() + "/" + orderDetails.getProductCode();
         }
     }
 
-    @GetMapping("/update-orderDetails/{number}/{code}")
+    @GetMapping("/update-order-details/{number}/{code}")
     public String getUpdateOrderDetails(Model model, @PathVariable Integer number,
                                               @PathVariable String code ) {
         OrderDetails orderDetails = null;
@@ -109,7 +110,7 @@ public class OrderDetailsController {
         return "/orderDetails/update";
     }
 
-    @PostMapping("/update-orderDetails/{number}/{code}")
+    @PostMapping("/update-order-details/{number}/{code}")
     public String processUpdateOrderDetails(Model model,
                                       @PathVariable Integer number,
                                       @PathVariable String code ,
@@ -118,7 +119,7 @@ public class OrderDetailsController {
             orderDetails.setOrderNumber(number);
             orderDetails.setProductCode(code);
             service.update(orderDetails);
-            return "redirect:/orderDetails/" + orderDetails.getOrderNumber();
+            return "redirect:/order-details/" + orderDetails.getOrderNumber() + "/" + orderDetails.getProductCode();
         } catch (Exception ex) {
             String errorMessage = ex.getMessage();
             model.addAttribute("errorMessage", errorMessage);
@@ -128,7 +129,7 @@ public class OrderDetailsController {
         }
     }
 
-    @GetMapping("/delete-orderDetails/{number}/{code}")
+    @GetMapping("/delete-order-details/{number}/{code}")
     public String getDeleteOrderDetails(Model model,
                                   @PathVariable Integer number,
                                         @PathVariable String code) {
@@ -144,13 +145,13 @@ public class OrderDetailsController {
         return "/orderDetails/orderDetails";
     }
 
-    @PostMapping("/delete-orderDetails/{number}/{code}")
+    @PostMapping("/delete-order-details/{number}/{code}")
     public String deleteOrderDetails(Model model,
                                @PathVariable Integer number,
                                      @PathVariable String code) {
         try {
             service.deleteById(number,code);
-            return "redirect:/orderDetails/list-all";
+            return "redirect:/order-details/list-all";
         } catch (Exception ex) {
             String errorMessage = ex.getMessage();
             model.addAttribute("errorMessage", errorMessage);

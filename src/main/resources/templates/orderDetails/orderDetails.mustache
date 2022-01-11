@@ -9,8 +9,13 @@
 <h1>View Order Details</h1>
 <a href="/order-details/list-all">Back to Order Details List</a>
 <br/><br/>
-{{#orderDetail}}
+{{#orderDetails}}
     <table border="0">
+        <tr>
+            <td>Order Number</td>
+            <td>:</td>
+            <td>{{orderNumber}}</td>
+        </tr>
         <tr>
             <td>Product Code</td>
             <td>:</td>
@@ -36,17 +41,17 @@
     </table>
     <br/><br/>
     {{#allowDelete}}
-        <form action="/order-detail/delete-orderDetail/{{orderNumber}}" method="POST">
+        <form action="/order-details/delete-order-details/{{orderNumber}}/{{productCode}}" method="POST">
             Delete this order-detail? <input type="submit" value="Yes" />
         </form>
     {{/allowDelete}}
     {{^allowDelete}}
         <div>
-            <a href="/order-detail/update-orderDetail/{{orderNumber}}">Edit</a> |
-            <a href="/order-detail/delete-orderDetail/{{orderNumber}}">Delete</a>
+            <a href="/order-details/update-order-details/{{orderNumber}}/{{productCode}}">Edit</a> |
+            <a href="/order-details/delete-order-details/{{orderNumber}}/{{productCode}}">Delete</a>
         </div>
     {{/allowDelete}}
-{{/orderDetail}}
+{{/orderDetails}}
 {{#errorMessage}}
     <div class="error">{{errorMessage}}</div>
 {{/errorMessage}}
