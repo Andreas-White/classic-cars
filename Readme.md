@@ -1,0 +1,2 @@
+This is a CRUD application written in Java, using Spring Boot 2, JPA, mustache template engine and  and mysql as database.
+In order to run the application you need to have at least jdk 11 installed as well as xampp.
