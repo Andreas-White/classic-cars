@@ -33,6 +33,11 @@
                         <li><a class="dropdown-item" href="/employee/all-sellers">All Sellers</a></li>
                         <li><a class="dropdown-item" href="/employee/all-vps">All Vice Presidents</a></li>
                         <li><a class="dropdown-item" href="/employee/all-managers">All Managers</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li> <form onsubmit="window.location = '/employee/employees-office/' + search.value; return false;">
+                            <input id="search" placeholder="City name" type="search" name="search">
+                            <input type="submit" value="Type a city name to get a list of employees in it">
+                        </form></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

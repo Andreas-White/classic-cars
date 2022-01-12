@@ -80,7 +80,7 @@ public class EmployeeController {
     @GetMapping("/top-ten")
     public String getTopTen(Model model) {
         List<Employee> employees = this.employeeService.getTopTenEmployees();
-        String title = "Top Ten Employees";
+        String title = "Top 10 Employees";
 
         model.addAttribute("employees", employees);
         model.addAttribute("title", title);
@@ -90,7 +90,7 @@ public class EmployeeController {
     @GetMapping("/bottom-ten")
     public String getBottomTen(Model model) {
         List<Employee> employees = this.employeeService.getBottomTenEmployees();
-        String title = "Bottom Ten employees";
+        String title = "Bottom 10 employees";
 
         model.addAttribute("employees", employees);
         model.addAttribute("title", title);
@@ -118,7 +118,7 @@ public class EmployeeController {
 
 
         List<Employee> employees = this.employeeService.getEmployeesByOffice(city);
-        String title = "All employees in:" + city;  ///////////////////////
+        String title = "All Employees in: " + city;  ///////////////////////
 
         model.addAttribute("title", title);
         model.addAttribute("employees", employees);
@@ -208,21 +208,4 @@ public class EmployeeController {
         }
     }
 
-   // @PutMapping("/update-employee")
-   // public void updateCustomer(@RequestBody Employee employee) {
-   //     try {
-   //         this.employeeService.update(employee);
-   //     } catch (Exception e) {
-   //         e.printStackTrace();
-   //     }
-   // }
-//
-   // @DeleteMapping("/delete-employee/{id}")
-   // public void deleteCustomer(@PathVariable Integer id) {
-   //     try {
-   //         this.employeeService.deleteById(id);
-   //     } catch (Exception e) {
-   //         e.printStackTrace();
-   //     }
-   // }
 }
