@@ -59,10 +59,11 @@ public class OrderDetailsService {
         return this.repository.existsDistinctByOrderNumberAndProductCode(number, code);
     }
 
-    public void save(OrderDetails orderDetails) throws Exception {
+    public OrderDetails save(OrderDetails orderDetails) throws Exception {
 
         if (orderDetails.getOrderNumber() == null) {
-            throw new Exception("no order number was provided");
+//            throw new Exception("no order number was provided");
+            orderDetails.setOrderNumber(this.orderService.getMaxOrderNumber());
         }
 
         if (!getOrderService().existsById(orderDetails.getOrderNumber())) {
@@ -83,6 +84,8 @@ public class OrderDetailsService {
 
         this.repository.insertOrderDetails(orderDetails.getOrderNumber(), orderDetails.getProductCode(),
                 orderDetails.getQuantityOrdered(), orderDetails.getPriceEach(), orderDetails.getOrderLineNumber());
+
+        return this.repository.save(orderDetails);
     }
 
     public void update(OrderDetails orderDetails) throws Exception {
@@ -109,6 +112,10 @@ public class OrderDetailsService {
         } else {
             this.repository.deleteOrderDetails(number, code);
         }
+    }
+
+    public Integer convert(String orderNumber) {
+        return Integer.parseInt(orderNumber);
     }
 
     public Long count() {

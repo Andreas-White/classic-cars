@@ -1,0 +1,3 @@
+This is a CRUD application written in Java, using Spring Boot 2, JPA, mustache template engine and mysql as database.
+In order to run the application you need to have at least jdk 11 installed as well as xampp. Clone the repository, import the sql file from the folder and open it in your preferred IDE. Alternatively if you want to run the application from the command line you should have maven installed (https://maven.apache.org/download.cgi). Then use the commands `mvn install` and then `mvn spring-boot:run`.  
+![](https://cdn2.lamag.com/wp-content/uploads/sites/6/2021/09/Black-Car_RezUp-slight_SILO_1500x1000px-1068x712.jpg)

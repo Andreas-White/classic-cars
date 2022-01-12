@@ -1,20 +1,27 @@
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <title>{{title}}</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+    <meta charset="UTF-8"/>
+    <title> {{title}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+            integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+            crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
 </head>
-<body>
-<h1>{{title}}</h1>
-<a href="/customer/list-all">Customer List</a><br>
-<a href="/customer/top-ten">Best Customers</a><br>
-<a href="/customer/bottom-ten">Worst Customers</a><br>
-<a href="/employee/list-all">Employee List</a><br>
-<a href="/employee/all-sellers">Sellers List</a><br>
 
-<a href="/product/list-all">Product List</a><br>
-<a href="/product/top-ten">Best Products</a><br>
-<a href="/product/bottom-ten">Worst Products</a><br>
+<body>
+{{>header}}
+<h1 style="margin-left: 33%; font-family: 'Acme', sans-serif;">{{title}}</h1>
+
+<main style="background: url('https://cdn2.lamag.com/wp-content/uploads/sites/6/2021/09/Black-Car_RezUp-slight_SILO_1500x1000px-1068x712.jpg') 50% 50% no-repeat;
+width: 1027px;
+height: 590px;
+margin-inline: 15rem;">
+
+</main>
 
 
 {{>footer}}

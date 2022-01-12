@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>User List</title>
+    <title>Office List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script></head>
@@ -12,30 +12,31 @@
 
 <div>
     <nobr>
-        <a class="btn btn-outline-dark" href="/employee/add-employee">Add Employee</a>
+        <a class="btn btn-outline-dark" href="/office/add-office">Add Office</a>
+
     </nobr>
 </div>
 <br/><br/>
 <div>
     <table class="table table-dark table-striped">
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>email</th>
-            <th>Office Code</th>
-            <th>Job Title</th>
+            <th>City</th>
+            <th>Phone</th>
+            <th>Address Line</th>
+            <th>Country</th>
+            <th>Postal Code</th>
             <th>Edit</th>
         </tr>
-        {{#employees}}
+        {{#offices}}
             <tr>
-                <td><a class="link-light text-decoration-none" href="/employee/{{employeeNumber}}">{{firstName}}</a></td>
-                <td>{{lastName}}</td>
-                <td>{{email}}</td>
-                <td>{{officeCode}}</td>
-                <td>{{jobTitle}}</td>
-                <td><a class="link-light text-decoration-none" href="/employee/{{employeeNumber}}">Edit</a></td>
+                <td><a class="link-light text-decoration-none" href="/office/{{officeCode}}">{{city}}</a></td>
+                <td>{{phone}}</td>
+                <td>{{addressLine}}</td>
+                <td>{{country}}</td>
+                <td>{{postalCode}}</td>
+                <td><a class="link-light text-decoration-none" href="/office/{{officeCode}}">Edit</a></td>
             </tr>
-        {{/employees}}
+        {{/offices}}
     </table>
 </div>
 <br/><br/>

@@ -1,6 +1,7 @@
 package com.retail.demo.controllers;
 
 import com.retail.demo.models.Customer;
+import com.retail.demo.models.Employee;
 import com.retail.demo.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,8 +67,16 @@ public class CustomerController {
     }
 
     @GetMapping("/name/{name}")
-    public Customer getCustomerByName(@PathVariable String name) {
-        return this.customerService.findByName(name);
+    public String getCustomerByName(Model model,
+                                    @PathVariable String name) {
+
+        List<Customer> customers = this.customerService.getCustomersByName(name);
+        String title = "info about Customer: " + name;
+
+        model.addAttribute("title", title);
+        model.addAttribute("customers", customers);
+
+        return "/customer/customer-list";
     }
 
     @GetMapping("/add-customer")
@@ -81,7 +90,7 @@ public class CustomerController {
 
     @PostMapping("/add-customer")
     public String processAddCustomer(Model model,
-                                   @ModelAttribute("customer") Customer customer) {
+                                     @ModelAttribute("customer") Customer customer) {
         try {
             Customer newCustomer = customerService.save(customer);
             return "redirect:/customer/" + newCustomer.getCustomerNumber();
@@ -109,8 +118,8 @@ public class CustomerController {
 
     @PostMapping("/update-customer/{id}")
     public String processUpdateCustomer(Model model,
-                                 @PathVariable Integer id,
-                                 @ModelAttribute("customer") Customer customer) {
+                                        @PathVariable Integer id,
+                                        @ModelAttribute("customer") Customer customer) {
         try {
             customer.setCustomerNumber(id);
             customerService.update(customer);
@@ -126,7 +135,7 @@ public class CustomerController {
 
     @GetMapping("/delete-customer/{id}")
     public String getDeleteCustomer(Model model,
-                               @PathVariable Integer id) {
+                                    @PathVariable Integer id) {
         Customer customer = null;
         try {
             customer = customerService.findById(id);

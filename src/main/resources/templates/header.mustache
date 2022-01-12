@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Customers
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/customer/list-all">All Customers</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/customer/top-ten">Top 10 Customers</a></li>
+                        <li><a class="dropdown-item" href="/customer/bottom-ten">Bottom 10 Customers</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form onsubmit="window.location = '/customer/name/' + search.value; return false;">
+                                <input id="search" placeholder="Customer name" type="search" name="search">
+                                <input type="submit" value="Type a Customer name to get their info">
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Employees
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/employee/list-all">All Employees</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/employee/top-ten">Best Employees</a></li>
+                        <li><a class="dropdown-item" href="/employee/bottom-ten">Worst Employees</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/employee/all-sellers">All Sellers</a></li>
+                        <li><a class="dropdown-item" href="/employee/all-vps">All Vice Presidents</a></li>
+                        <li><a class="dropdown-item" href="/employee/all-managers">All Managers</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form onsubmit="window.location = '/employee/employees-office/' + search.value; return false;">
+                                <input id="search" placeholder="City name" type="search" name="search">
+                                <input type="submit" value="Type a city name to get a list of employees in it">
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Products
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/product/list-all">All Products</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/product/top-ten">Best Products</a></li>
+                        <li><a class="dropdown-item" href="/product/bottom-ten">Worst Products</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/office/list-all">All Offices</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/order/list-all">All Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/payment/list-all">All Payements</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/product-line/list-all">Product Lines List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/order-details/list-all">All Order Details</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br/><br/>

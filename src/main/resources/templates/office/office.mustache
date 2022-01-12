@@ -2,62 +2,57 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>User Details</title>
+    <title>Offices</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script></head>
 <body class="mx-2 bg-light bg-gradient">
 {{>header}}
-<h1>View Product</h1>
-<a class="btn btn-outline-dark" href="/product/list-all">Back to Product List</a>
+<h1>View Offices</h1>
+<a class="btn btn-outline-dark" href="/office/list-all">Back to Offices List</a>
 <br/><br/>
-{{#product}}
+{{#office}}
     <table class="table table-dark table-striped">
         <tr>
-            <td>Product Name</td>
+            <td>City</td>
             <td>:</td>
-            <td>{{productName}}</td>
+            <td>{{city}}</td>
         </tr>
         <tr>
-            <td>Product Line</td>
+            <td>Phone</td>
             <td>:</td>
-            <td>{{productLine}}</td>
+            <td>{{phone}}</td>
         </tr>
         <tr>
-            <td>Product Vendor</td>
+            <td>Address Line</td>
             <td>:</td>
-            <td>{{productVendor}}</td>
+            <td>{{addressLine}}</td>
         </tr>
         <tr>
-            <td>Product Description</td>
+            <td>Country</td>
             <td>:</td>
-            <td>{{productDescription}}</td>
+            <td>{{country}}</td>
         </tr>
         <tr>
-            <td>Quantity in Stock</td>
+            <td>Postal Code</td>
             <td>:</td>
-            <td>{{quantityInStock}}</td>
-        </tr>
-        <tr>
-            <td>Buy Price</td>
-            <td>:</td>
-            <td>{{buyPrice}}</td>
+            <td>{{postalCode}}</td>
         </tr>
 
     </table>
     <br/><br/>
     {{#allowDelete}}
-        <form action="/product/delete-product/{{productCode}}" method="POST">
-            Delete this user? <input type="submit" value="Yes" />
+        <form action="/office/delete-office/{{officeCode}}" method="POST">
+            Delete this office? <input type="submit" value="Yes" />
         </form>
     {{/allowDelete}}
     {{^allowDelete}}
         <div>
-            <a class="btn btn-outline-dark" href="/product/update-product/{{productCode}}">Edit</a> |
-            <a class="btn btn-outline-danger" href="/product/delete-product/{{productCode}}">Delete</a>
+            <a class="btn btn-outline-dark" href="/office/update-office/{{officeCode}}">Edit</a> |
+            <a class="btn btn-outline-dark" href="/office/delete-office/{{officeCode}}">Delete</a>
         </div>
     {{/allowDelete}}
-{{/product}}
+{{/office}}
 {{#errorMessage}}
     <div class="error">{{errorMessage}}</div>
 {{/errorMessage}}

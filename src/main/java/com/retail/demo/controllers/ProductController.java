@@ -34,7 +34,7 @@ public class ProductController {
     @GetMapping("/top-ten")
     public String getTopTen(Model model) {
         List<Product> products = this.productService.getTopTenProducts();
-        String title = "All Products";
+        String title = "Top 10 Products";
 
         model.addAttribute("products", products);
         model.addAttribute("title", title);
@@ -43,7 +43,7 @@ public class ProductController {
     @GetMapping("/bottom-ten")
     public String getBottomTen(Model model) {
         List<Product> products = this.productService.getBottomTenProducts();
-        String title = "All Products";
+        String title = "Bottom 10 Products";
 
         model.addAttribute("products", products);
         model.addAttribute("title", title);
@@ -102,7 +102,7 @@ public class ProductController {
     @PostMapping("/update-product/{id}")
     public String processUpdateProduct(Model model,
                                         @PathVariable String id,
-                                        @ModelAttribute("customer") Product product) {
+                                        @ModelAttribute("product") Product product) {
         try {
             product.setProductCode(id);
             productService.update(product);

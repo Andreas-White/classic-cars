@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Order List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script></head>
+<body class="mx-2 bg-light bg-gradient">
+{{>header}}
+<h1>{{title}}</h1>
+
+<div>
+    <nobr>
+        <a class="btn btn-outline-dark" href="/order/add-order">Add Order</a>
+    </nobr>
+</div>
+<br/><br/>
+<div>
+    <table class="table table-dark table-striped">
+        <tr>
+            <th>Order Date</th>
+            <th>Required Date</th>
+            <th>Shipped Date</th>
+            <th>Status</th>
+            <th>Comments</th>
+            <th>Customer Number</th>
+            <th>Edit</th>
+        </tr>
+        {{#orders}}
+            <tr>
+                <td><a class="link-light text-decoration-none" href="/order/{{orderNumber}}">{{orderDate}}</a></td>
+                <td>{{requiredDate}}</td>
+                <td>{{#shippedDate}}{{shippedDate}}{{/shippedDate}}</td>
+                <td>{{status}}</td>
+                <td>{{#comments}}{{comments}}{{/comments}}</td>
+                <td>{{customerNumber}}</td>
+                <td><a class="link-light text-decoration-none" href="/order/{{orderNumber}}">Edit</a></td>
+            </tr>
+        {{/orders}}
+    </table>
+</div>
+<br/><br/>
+{{>footer}}
+</body>
+</html>
