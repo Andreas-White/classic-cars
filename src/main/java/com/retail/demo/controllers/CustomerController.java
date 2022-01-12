@@ -71,7 +71,7 @@ public class CustomerController {
                                     @PathVariable String name) {
 
         List<Customer> customers = this.customerService.getCustomersByName(name);
-        String title = "All Customer in:" + name;
+        String title = "info about Customer: " + name;
 
         model.addAttribute("title", title);
         model.addAttribute("customers", customers);

@@ -17,7 +17,14 @@
                         <li><a class="dropdown-item" href="/customer/list-all">All Customers</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/customer/top-ten">Best Customers</a></li>
-                        <li><a class="dropdown-item" href="/customer/bottom-ten">Worst Custoers</a></li>
+                        <li><a class="dropdown-item" href="/customer/bottom-ten">Worst Customers</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form onsubmit="window.location = '/customer/name/' + search.value; return false;">
+                                <input id="search" placeholder="Customer name" type="search" name="search">
+                                <input type="submit" value="Type a Customer name to get their info">
+                            </form>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -34,10 +41,12 @@
                         <li><a class="dropdown-item" href="/employee/all-vps">All Vice Presidents</a></li>
                         <li><a class="dropdown-item" href="/employee/all-managers">All Managers</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li> <form onsubmit="window.location = '/employee/employees-office/' + search.value; return false;">
-                            <input id="search" placeholder="City name" type="search" name="search">
-                            <input type="submit" value="Type a city name to get a list of employees in it">
-                        </form></li>
+                        <li>
+                            <form onsubmit="window.location = '/employee/employees-office/' + search.value; return false;">
+                                <input id="search" placeholder="City name" type="search" name="search">
+                                <input type="submit" value="Type a city name to get a list of employees in it">
+                            </form>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

@@ -32,16 +32,7 @@ public class EmployeeController {
         return "/employee/employee-list";
     }
 
-  //  @GetMapping("/{id}")
-  //  public Employee getEmployee(@PathVariable Integer id) {
-  //      return this.employeeService.getById(id);
-  //  }
-//
-  //  @GetMapping("/name")
-  //  public Employee getEmployee(@RequestParam String first,
-  //                              @RequestParam String last) {
-  //      return this.employeeService.getByName(first, last);
-  //  }
+
 
     @GetMapping("/all-sellers")
     public String getSellers(Model model) {
