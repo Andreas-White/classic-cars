@@ -7,15 +7,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="mx-2 bg-light bg-gradient">
 {{>header}}
 <h1>{{#add}}Create new Product Line:{{/add}}{{^add}}Edit Product Line:{{/add}}</h1>
-<a href="/product-line/list-all">Back to Product Line List</a>
+<a class="btn btn-outline-dark" href="/product-line/list-all">Back to Product Line List</a>
 <br/><br/>
 {{#productLine}}
     <form action="{{#add}}/product-line/add-product-line{{/add}}{{^add}}/product-line/update-product-line/{{id}}{{/add}}"
           name="product-line" method="POST">
-        <table border="0">
+        <table class="table table-dark table-striped">
             {{#add}}
                 <tr>
 
@@ -33,7 +33,7 @@
             </tr>
 
         </table>
-        <input type="submit" value="{{#add}}Create{{/add}}{{^add}}Update{{/add}}"/>
+        <input class="btn btn-outline-primary" type="submit" value="{{#add}}Create{{/add}}{{^add}}Update{{/add}}"/>
     </form>
 {{/productLine}}
 
