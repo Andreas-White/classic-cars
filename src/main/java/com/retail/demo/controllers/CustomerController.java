@@ -1,7 +1,6 @@
 package com.retail.demo.controllers;
 
 import com.retail.demo.models.Customer;
-import com.retail.demo.models.Employee;
 import com.retail.demo.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +28,6 @@ public class CustomerController {
         model.addAttribute("customers", customers);
         model.addAttribute("title", title);
         return "/customer/customer-list";
-        //return this.customerService.getAllCustomers();
     }
 
     @GetMapping("/top-ten")
@@ -69,14 +67,15 @@ public class CustomerController {
     @GetMapping("/name/{name}")
     public String getCustomerByName(Model model,
                                     @PathVariable String name) {
-
-        List<Customer> customers = this.customerService.getCustomersByName(name);
-        String title = "info about Customer: " + name;
-
-        model.addAttribute("title", title);
-        model.addAttribute("customers", customers);
-
-        return "/customer/customer-list";
+        Customer customer = null;
+        try {
+            customer = this.customerService.getCustomerByName(name);
+            model.addAttribute("allowDelete", false);
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "No customer found with that ID");
+        }
+        model.addAttribute("customer", customer);
+        return "/customer/customer";
     }
 
     @GetMapping("/add-customer")
@@ -104,7 +103,8 @@ public class CustomerController {
     }
 
     @GetMapping("/update-customer/{id}")
-    public String getUpdateCustomer(Model model, @PathVariable Integer id) {
+    public String getUpdateCustomer(Model model,
+                                    @PathVariable Integer id) {
         Customer customer = null;
         try {
             customer = customerService.findById(id);

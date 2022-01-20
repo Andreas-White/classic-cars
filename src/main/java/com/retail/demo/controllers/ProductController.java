@@ -1,6 +1,5 @@
 package com.retail.demo.controllers;
 
-import com.retail.demo.models.Customer;
 import com.retail.demo.models.Product;
 import com.retail.demo.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +39,7 @@ public class ProductController {
         model.addAttribute("title", title);
         return "/product/product-list";
     }
+
     @GetMapping("/bottom-ten")
     public String getBottomTen(Model model) {
         List<Product> products = this.productService.getBottomTenProducts();
@@ -49,12 +49,13 @@ public class ProductController {
         model.addAttribute("title", title);
         return "/product/product-list";
     }
+
     @GetMapping("/{id}")
     public String getProductById(Model model,
-                                  @PathVariable String id) {
+                                 @PathVariable String id) {
         Product product = null;
         try {
-            product  = productService.getProductById(id);
+            product = productService.getProductById(id);
             model.addAttribute("allowDelete", false);
         } catch (Exception ex) {
             model.addAttribute("errorMessage", "No customer found with that ID");
@@ -62,6 +63,7 @@ public class ProductController {
         model.addAttribute("product", product);
         return "/product/product";
     }
+
     @GetMapping("/add-product")
     public String getAddProduct(Model model) {
         Product product = new Product();
@@ -73,7 +75,7 @@ public class ProductController {
 
     @PostMapping("/add-product")
     public String processAddProduct(Model model,
-                                     @ModelAttribute("product") Product product) {
+                                    @ModelAttribute("product") Product product) {
         try {
             Product newProduct = productService.save(product);
             return "redirect:/product/" + newProduct.getProductCode();
@@ -101,8 +103,8 @@ public class ProductController {
 
     @PostMapping("/update-product/{id}")
     public String processUpdateProduct(Model model,
-                                        @PathVariable String id,
-                                        @ModelAttribute("product") Product product) {
+                                       @PathVariable String id,
+                                       @ModelAttribute("product") Product product) {
         try {
             product.setProductCode(id);
             productService.update(product);
@@ -118,7 +120,7 @@ public class ProductController {
 
     @GetMapping("/delete-product/{id}")
     public String getDeleteProduct(Model model,
-                                    @PathVariable String id) {
+                                   @PathVariable String id) {
         Product product = null;
         try {
             product = productService.getProductById(id);
@@ -132,7 +134,7 @@ public class ProductController {
 
     @PostMapping("/delete-product/{id}")
     public String deleteProduct(Model model,
-                                 @PathVariable String id) {
+                                @PathVariable String id) {
         try {
             productService.deleteById(id);
             return "redirect:/product/list-all";
@@ -142,21 +144,4 @@ public class ProductController {
             return "/product/product";
         }
     }
- // @PutMapping("/update-product")
- // public void updateProduct(@RequestBody Product product) {
- //     try {
- //         this.productService.update(product);
- //     } catch (Exception e) {
- //         e.printStackTrace();
- //     }
- // }
-
- // @DeleteMapping("/delete-product/{id}")
- // public void deleteProduct(@PathVariable String id) {
- //     try {
- //         this.productService.deleteById(id);
- //     } catch (Exception e) {
- //         e.printStackTrace();
- //     }
- // }
 }

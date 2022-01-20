@@ -1,7 +1,6 @@
 package com.retail.demo.controllers;
 
 import com.retail.demo.models.Employee;
-import com.retail.demo.models.Product;
 import com.retail.demo.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,11 +26,10 @@ public class EmployeeController {
         String title = "All Employees";
 
         model.addAttribute("employees", employees);
-        model.addAttribute("title",title);
+        model.addAttribute("title", title);
 
         return "/employee/employee-list";
     }
-
 
 
     @GetMapping("/all-sellers")
@@ -90,10 +88,10 @@ public class EmployeeController {
 
     @GetMapping("/{id}")
     public String getEmployeeById(Model model,
-                          @PathVariable Integer id) {
+                                  @PathVariable Integer id) {
         Employee employee = null;
         try {
-            employee  = employeeService.getById(id);
+            employee = employeeService.getById(id);
             model.addAttribute("allowDelete", false);
         } catch (Exception ex) {
             model.addAttribute("errorMessage", "No customer found with that ID");
@@ -104,12 +102,10 @@ public class EmployeeController {
 
     @GetMapping("/employees-office/{city}")
     public String getEmployeesByOffice(Model model,
-                                               @PathVariable String city) {
-
-
+                                       @PathVariable String city) {
 
         List<Employee> employees = this.employeeService.getEmployeesByOffice(city);
-        String title = "All Employees in: " + city;  ///////////////////////
+        String title = "All Employees in: " + city;
 
         model.addAttribute("title", title);
         model.addAttribute("employees", employees);
@@ -118,18 +114,18 @@ public class EmployeeController {
     }
 
 
-     @GetMapping("/add-employee")
-     public String getAddEmployee(Model model) {
-         Employee employee = new Employee();
-         model.addAttribute("add", true);
-         model.addAttribute("employee", employee);
+    @GetMapping("/add-employee")
+    public String getAddEmployee(Model model) {
+        Employee employee = new Employee();
+        model.addAttribute("add", true);
+        model.addAttribute("employee", employee);
 
-         return "employee/update";
-     }
+        return "employee/update";
+    }
 
     @PostMapping("/add-employee")
     public String processAddEmployee(Model model,
-                                    @ModelAttribute("employee") Employee employee) {
+                                     @ModelAttribute("employee") Employee employee) {
         try {
             Employee newEmployee = employeeService.save(employee);
             return "redirect:/employee/" + newEmployee.getEmployeeNumber();
@@ -157,8 +153,8 @@ public class EmployeeController {
 
     @PostMapping("/update-employee/{id}")
     public String processUpdateEmployee(Model model,
-                                       @PathVariable Integer id,
-                                       @ModelAttribute("employee") Employee employee) {
+                                        @PathVariable Integer id,
+                                        @ModelAttribute("employee") Employee employee) {
         try {
             employee.setEmployeeNumber(id);
             employeeService.update(employee);
@@ -174,7 +170,7 @@ public class EmployeeController {
 
     @GetMapping("/delete-employee/{id}")
     public String getDeleteEmployee(Model model,
-                                   @PathVariable Integer id) {
+                                    @PathVariable Integer id) {
         Employee employee = null;
         try {
             employee = employeeService.getById(id);
@@ -188,7 +184,7 @@ public class EmployeeController {
 
     @PostMapping("/delete-employee/{id}")
     public String deleteEmployee(Model model,
-                                @PathVariable Integer id) {
+                                 @PathVariable Integer id) {
         try {
             employeeService.deleteById(id);
             return "redirect:/employee/list-all";

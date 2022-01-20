@@ -1,6 +1,5 @@
 package com.retail.demo.controllers;
 
-import com.retail.demo.models.Customer;
 import com.retail.demo.models.ProductLine;
 import com.retail.demo.services.ProductLineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +29,7 @@ public class ProductLineController {
         model.addAttribute("title", title);
         return "/productLine/productLine-list";
     }
+
     @GetMapping("/{id}")
     public String getProductLinetById(Model model,
                                       @PathVariable String id) {
@@ -43,6 +43,7 @@ public class ProductLineController {
         model.addAttribute("productLine", productLine);
         return "/productLine/productLine";
     }
+
     @GetMapping("/add-product-line")
     public String addProductLine(Model model) {
         ProductLine productLine = new ProductLine();
@@ -54,7 +55,7 @@ public class ProductLineController {
 
     @PostMapping("/add-product-line")
     public String processAddProductLine(Model model,
-                                     @ModelAttribute("productLine") ProductLine productLine) {
+                                        @ModelAttribute("productLine") ProductLine productLine) {
         try {
             ProductLine newProductLine = service.save(productLine);
             return "redirect:/product-line/" + newProductLine.getProductLine();
@@ -66,8 +67,10 @@ public class ProductLineController {
             return "/productLine/update";
         }
     }
+
     @GetMapping("/update-product-line/{id}")
-    public String getUpdateProductLine(Model model, @PathVariable String id) {
+    public String getUpdateProductLine(Model model,
+                                       @PathVariable String id) {
         ProductLine productLine = null;
         try {
             productLine = service.findById(id);
@@ -81,8 +84,8 @@ public class ProductLineController {
 
     @PostMapping("/update-product-line/{id}")
     public String processUpdateProductLine(Model model,
-                                        @PathVariable String id,
-                                        @ModelAttribute("productLine") ProductLine productLine) {
+                                           @PathVariable String id,
+                                           @ModelAttribute("productLine") ProductLine productLine) {
         try {
             productLine.setProductLine(id);
             service.update(productLine);
@@ -95,9 +98,10 @@ public class ProductLineController {
             return "/productLine/update";
         }
     }
+
     @GetMapping("/delete-product-line/{id}")
     public String getDeleteProductLine(Model model,
-                                    @PathVariable String id) {
+                                       @PathVariable String id) {
         ProductLine productLine = null;
         try {
             productLine = service.findById(id);
@@ -111,7 +115,7 @@ public class ProductLineController {
 
     @PostMapping("/delete-product-line/{id}")
     public String deleteProductLine(Model model,
-                                 @PathVariable String id) {
+                                    @PathVariable String id) {
         try {
             service.deleteById(id);
             return "redirect:/product-line/list-all";

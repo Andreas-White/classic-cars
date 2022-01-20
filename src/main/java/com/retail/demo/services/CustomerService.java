@@ -39,9 +39,9 @@ public class CustomerService {
         return new ArrayList<>(this.repository.getBottomTenCustomersAmount());
     }
 
-  public List<Customer> getCustomersByName(String name) {
-      return this.repository.getCustomersByCustomerName(name);
-  }
+    public Customer getCustomerByName(String name) {
+        return this.repository.getCustomerByCustomerName(name);
+    }
 
     private boolean existsById(Integer id) {
         return this.repository.existsById(id);
@@ -84,8 +84,7 @@ public class CustomerService {
     public void deleteById(Integer id) throws Exception {
         if (!existsById(id)) {
             throw new Exception("Cannot find customer with id: " + id);
-        }
-        else {
+        } else {
             this.repository.deleteById(id);
         }
     }

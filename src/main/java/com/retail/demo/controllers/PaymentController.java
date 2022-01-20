@@ -30,11 +30,13 @@ public class PaymentController {
         model.addAttribute("title", title);
         return "/payment/payment-list";
     }
+
     @GetMapping("/{id}")
-    public String getPaymentById(Model model,@PathVariable String id) {
+    public String getPaymentById(Model model,
+                                 @PathVariable String id) {
         Payment payment = null;
         try {
-            payment  = service.findById(id);
+            payment = service.findById(id);
             model.addAttribute("allowDelete", false);
         } catch (Exception ex) {
             model.addAttribute("errorMessage", "No payment found with that ID");
@@ -55,7 +57,8 @@ public class PaymentController {
     }
 
     @PostMapping("/add-payment")
-    public String addPayment(Model model,@ModelAttribute("payment") PaymentDT paymentDT) {
+    public String addPayment(Model model,
+                             @ModelAttribute("payment") PaymentDT paymentDT) {
         try {
             Payment newPayment1 = new Payment();
             newPayment1.setCheckNumber(paymentDT.getCheckNumber());
@@ -75,7 +78,8 @@ public class PaymentController {
     }
 
     @GetMapping("/update-payment/{id}")
-    public String getUpdatePayment(Model model, @PathVariable String id) {
+    public String getUpdatePayment(Model model,
+                                   @PathVariable String id) {
         Payment payment = null;
         try {
             payment = service.findById(id);
@@ -89,8 +93,8 @@ public class PaymentController {
 
     @PostMapping("/update-payment/{id}")
     public String processUpdatePayment(Model model,
-                                      @PathVariable String id,
-                                      @ModelAttribute("payment") PaymentDT paymentDT) {
+                                       @PathVariable String id,
+                                       @ModelAttribute("payment") PaymentDT paymentDT) {
         try {
             Payment newPayment1 = new Payment();
             newPayment1.setCheckNumber(id);
@@ -112,7 +116,7 @@ public class PaymentController {
 
     @GetMapping("/delete-payment/{id}")
     public String getDeletePayment(Model model,
-                                  @PathVariable String id) {
+                                   @PathVariable String id) {
         Payment payment = null;
         try {
             payment = service.findById(id);
@@ -126,7 +130,7 @@ public class PaymentController {
 
     @PostMapping("/delete-payment/{id}")
     public String deletePayment(Model model,
-                               @PathVariable String id) {
+                                @PathVariable String id) {
         try {
             service.deleteById(id);
             return "redirect:/payment/list-all";

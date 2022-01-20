@@ -15,7 +15,13 @@
         <a class="btn btn-outline-dark" href="/customer/add-customer">Add Customer</a>
     </nobr>
 </div>
-<br/><br/>
+
+<form onsubmit="window.location = '/customer/name/' + search.value; return false;"
+      style="margin: 1rem 0 1rem 0; display: flex; flex-direction: column; width: fit-content;">
+    <label for="search">Get customer's details by name</label>
+    <input id="search" placeholder="Customer Name" type="search" name="search" style="margin: 5px 0 5px 0">
+    <input type="submit" value="Search" style="width: fit-content" class="btn btn-outline-dark">
+</form>
 <div>
     <table class="table table-dark table-striped">
         <tr>
